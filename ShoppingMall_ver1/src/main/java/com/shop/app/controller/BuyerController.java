@@ -53,4 +53,9 @@ public class BuyerController {
 		logger.info("회원가입 성공! ");
 	}
 	
+	@RequestMapping(value="login", method=RequestMethod.POST)
+	public void login(String b_id, String b_pw){
+		
+	}
+	
 }

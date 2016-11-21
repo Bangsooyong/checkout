@@ -33,10 +33,10 @@ public class HomeController {
 		
 		model.addAttribute("serverTime", formattedDate );
 		
-		//return "login1";
+		return "login1";
 		//return "sudo_checkout";
 		//return "index";
-		return "check";
+//		return "check";
 	}
 	
 }

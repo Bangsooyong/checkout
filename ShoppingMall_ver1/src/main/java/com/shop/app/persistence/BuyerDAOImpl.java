@@ -1,5 +1,8 @@
 package com.shop.app.persistence;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -26,5 +29,19 @@ public class BuyerDAOImpl implements BuyerDAO{
 	public BuyerVO select(String b_id) {
 		BuyerVO vo =sqlSession.selectOne(NAMESPACE+".select-by-b_id", b_id);
 		return vo;
+	}
+	
+	// 로그인
+	@Override
+	public boolean isValidUser(String b_id, String b_pw) {
+		Map<String, String> map = new HashMap<>();
+		map.put("id", b_id);
+		map.put("pw", b_pw);
+		int result = sqlSession.selectOne(NAMESPACE+".buyer-login", map);
+		if (result == 1) {
+			return true;
+		} else{
+			return false;
+		}
 	}
 }
