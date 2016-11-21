@@ -88,7 +88,7 @@ span.req {
 	<div class="container">
 		<div class="row">
 			<div class="col-md-6">
-				<form action="joinMember" method="post" id="fileForm" role="form">
+				<form action="login_result" method="post" id="fileForm" role="form">
 					<fieldset>
 						<legend class="text-center">
 							구매자 회원가입<span class="req">
