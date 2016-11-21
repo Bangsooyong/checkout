@@ -33,9 +33,10 @@ public class BuyerController {
 	
 	
 	
-	// login1 아이디 중복체크 컨트롤러
+	// login_register 아이디 중복체크 컨트롤러
 	@RequestMapping(value="/checkid", method=RequestMethod.POST)
 	public void checkid(@RequestBody String userid, HttpServletResponse response) throws IOException{
+		
 		logger.info("checkid 실행");
 		logger.info("userid" + userid);
 		
