@@ -21,4 +21,9 @@ public class BuyerServiceImpl implements BuyerService {
 	public BuyerVO read(String b_id) {
 		return dao.select(b_id);
 	}
+	
+	@Override
+	public boolean isValidUser(String b_id, String b_pw) {
+		return dao.isValidUser(b_id, b_pw);
+	}
 }

@@ -35,8 +35,8 @@ public class BuyerDAOImpl implements BuyerDAO{
 	@Override
 	public boolean isValidUser(String b_id, String b_pw) {
 		Map<String, String> map = new HashMap<>();
-		map.put("id", b_id);
-		map.put("pw", b_pw);
+		map.put("b_id", b_id);
+		map.put("b_pw", b_pw);
 		int result = sqlSession.selectOne(NAMESPACE+".buyer-login", map);
 		if (result == 1) {
 			return true;

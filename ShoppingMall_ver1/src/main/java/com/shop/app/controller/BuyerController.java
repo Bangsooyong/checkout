@@ -30,9 +30,7 @@ public class BuyerController {
 	public String login(Model model) {
 		return "login_register";
 	}
-	
-	
-	
+
 	// login1 아이디 중복체크 컨트롤러
 	@RequestMapping(value="/checkid", method=RequestMethod.POST)
 	public void checkid(@RequestBody String userid, HttpServletResponse response) throws IOException{
@@ -60,10 +58,20 @@ public class BuyerController {
 		buyerService.insert(vo);
 		logger.info("회원가입 성공! ");
 	}
+	@RequestMapping(value="login", method=RequestMethod.GET)
+	public void openLoginJSP(){
+		
+	}
 	
 	@RequestMapping(value="login", method=RequestMethod.POST)
-	public void login(String b_id, String b_pw){
-		
+	public void login(String b_id, String b_pw){	
+		logger.info("login 컨트롤러 실행");
+		logger.info("b_id : "+b_id+" , b_pw : "+b_pw);
+		if (buyerService.isValidUser(b_id, b_pw)){
+			logger.info("로그인 성공");
+		} else {
+			logger.info("로그인 실패");
+		}
 	}
 	
 }

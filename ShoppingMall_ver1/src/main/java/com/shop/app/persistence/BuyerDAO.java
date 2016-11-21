@@ -8,6 +8,6 @@ public interface BuyerDAO {
 	// 중복 아이디 체크
 	public abstract BuyerVO select(String b_id);
 	// 로그인
-	public abstract boolean isValidUser(String b_id, String p_wd);
+	public abstract boolean isValidUser(String b_id, String b_pw);
 	
 }
