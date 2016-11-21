@@ -10,7 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.shop.app.HomeController;
 
 /**
  * Handles requests for the application home page.
@@ -18,7 +17,7 @@ import com.shop.app.HomeController;
 @Controller
 public class EmailCertifyController {
 
-	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+	private static final Logger logger = LoggerFactory.getLogger(EmailCertifyController.class);
 
 	@Autowired
 	private JavaMailSenderImpl mailSender;
@@ -44,7 +43,7 @@ public class EmailCertifyController {
 		// 1. 0~9999 까지의 난수를 발생시킨 후 1~3자리 수를 없애기위해 1000을 더해준다 (1000~10999)
 		// 2. 다섯자리가 넘어가면 1000을 빼준다.			
 		int code = (int) (Math.random() * 10000 + 1000); 
-		if(code > 10000){
+		if (code > 10000){
 			code = code - 1000;
 		}
 		
@@ -61,7 +60,7 @@ public class EmailCertifyController {
 		mailSender.send(message);  // 이메일 전송
 		model.addAttribute("code", code);
 		
-		return "result";
+		return "email_result";
 	}
 	////////////////////////////////////////////////////////////////////////////////////////////////////
 	////////////////////////////////////////////////////////////////////////////////////////////////////

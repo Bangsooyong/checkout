@@ -1,7 +1,6 @@
 package com.shop.app.controller;
 
 import java.io.IOException;
-import java.util.Date;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -18,12 +17,21 @@ import com.shop.app.domain.BuyerVO;
 import com.shop.app.service.BuyerService;
 
 @Controller // 스프링 프레임워크에 Controller bean 객체로 등록
+@RequestMapping(value="/login")
 public class BuyerController {
+	
+	private static final Logger logger = LoggerFactory.getLogger(BuyerController.class);
 	
 	@Autowired
 	BuyerService buyerService;
 	
-	private static final Logger logger = LoggerFactory.getLogger(BuyerController.class);
+	// 회원가입 양식 호출
+	@RequestMapping(value="/register", method=RequestMethod.GET)
+	public String login(Model model) {
+		return "login_register";
+	}
+	
+	
 	
 	// login1 아이디 중복체크 컨트롤러
 	@RequestMapping(value="/checkid", method=RequestMethod.POST)
