@@ -31,9 +31,11 @@ public class BuyerController {
 		return "login_register";
 	}
 
-	// login1 아이디 중복체크 컨트롤러
+	// login_register 아이디 중복체크 컨트롤러
+
 	@RequestMapping(value="/checkid", method=RequestMethod.POST)
 	public void checkid(@RequestBody String userid, HttpServletResponse response) throws IOException{
+		
 		logger.info("checkid 실행");
 		logger.info("userid" + userid);
 		
@@ -51,12 +53,13 @@ public class BuyerController {
 	}
 	
 	// 회원가입 컨트롤러
-	@RequestMapping(value="joinMember", method=RequestMethod.POST)
-	public void joinMember(BuyerVO vo){
+	@RequestMapping(value="/login_result", method=RequestMethod.POST)
+	public String login_result(BuyerVO vo){
 		// login1 폼에서 입력받은 값을 vo 에 넣어서 insert합니다.
 		// 아이디가 PK라서 같은 아이디 두번넣으면 에러남.
 		buyerService.insert(vo);
 		logger.info("회원가입 성공! ");
+		return "login_result";
 	}
 	@RequestMapping(value="login", method=RequestMethod.GET)
 	public void openLoginJSP(){
