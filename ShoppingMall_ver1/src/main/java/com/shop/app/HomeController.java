@@ -36,7 +36,7 @@ public class HomeController {
 		//return "login1";
 		//return "sudo_checkout";
 		//return "index";
-		return "check";
+		return "email_check";
 	}
 	
 }
