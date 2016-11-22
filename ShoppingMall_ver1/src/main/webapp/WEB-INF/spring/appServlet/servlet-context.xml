@@ -42,12 +42,12 @@
 		</interceptor>
 		
 		<interceptor>
-			<mapping path="/member/login-post"/> <!-- 패스추가로 인터셉터구현 -->
+			<mapping path=""/> <!--/member/login-post : 로그인 인터셉터 -->
 			<beans:ref bean="LoginInterceptor"/>
 		</interceptor>
 		
 		<interceptor>
-			<mapping path="/board/register"/>
+			<mapping path=""/> <!--/board/register : Auth 인터셉터 -->
 			<beans:ref bean="AuthInterceptor"/>
 		</interceptor>
 		
