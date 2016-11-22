@@ -3,7 +3,9 @@ package com.shop.app.controller;
 import java.io.IOException;
 import java.net.URLDecoder;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,16 +32,13 @@ public class BuyerController {
 	
 	@Autowired
 	BuyerService buyerService;
-	
-	
-	
+
 	// 회원가입 양식 호출
 	@RequestMapping(value="/register", method=RequestMethod.GET)
 	public String login(Model model) {
 		return "login_register";
 	}
 
-//////////////////////////////////////////////////////////////
 	// login_register 아이디 중복체크 컨트롤러
 	@RequestMapping(value="/checkid", method=RequestMethod.POST)
 	public void checkid(@RequestBody String userid, HttpServletResponse response) throws IOException{
@@ -72,22 +71,23 @@ public class BuyerController {
 		return "login_result";
 	}
 	
-/*	
+
 	@RequestMapping(value="login", method=RequestMethod.GET)
-	public void openLoginJSP(){
-		
-	}
-	*/
-/*	@RequestMapping(value="login", method=RequestMethod.POST)
-	public void login(String b_id, String b_pw){	
+	public void openLoginJSP(){}
+	
+	@RequestMapping(value="login", method=RequestMethod.POST)
+	public void login(String b_id, String b_pw, HttpServletRequest request, String query){	
+
 		logger.info("login 컨트롤러 실행");
 		logger.info("b_id : "+b_id+" , b_pw : "+b_pw);
 		if (buyerService.isValidUser(b_id, b_pw)){
 			logger.info("로그인 성공");
+			HttpSession session = request.getSession(true);
+			session.setAttribute("loginInfo", query);
 		} else {
 			logger.info("로그인 실패");
 		}
-	}*/
+	}
 	
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 	
@@ -137,5 +137,6 @@ public class BuyerController {
 	return "sudo_checkout";
 	
 	}	
+
 	
 } // end class

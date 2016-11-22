@@ -24,5 +24,35 @@
 	<context:component-scan base-package="com.shop.app" />
 	<context:component-scan base-package="com.shop.app.controller" />
 	
+	<!-- 인터셉터 클래스를 스프링프레임워크에 bean으로 등록 -->
+	<beans:bean id="Interceptor" class="com.shop.app.interceptor.Interceptor">
+	</beans:bean>
+	<beans:bean id="LoginInterceptor" class="com.shop.app.interceptor.LoginInterceptor">
+	</beans:bean>
+	<beans:bean id="AuthInterceptor" class="com.shop.app.interceptor.AuthInterceptor">
+	</beans:bean>
+	
+	<!--  인터셉터를 요청(request)에 매핑 -->
+	<interceptors>
+	
+		<interceptor>
+			<mapping path="/test1"/>
+			<mapping path="/test2"/>
+			<beans:ref bean="Interceptor" />
+		</interceptor>
+		
+		<interceptor>
+			<mapping path="/member/login-post"/> <!-- 패스추가로 인터셉터구현 -->
+			<beans:ref bean="LoginInterceptor"/>
+		</interceptor>
+		
+		<interceptor>
+			<mapping path="/board/register"/>
+			<beans:ref bean="AuthInterceptor"/>
+		</interceptor>
+		
+	</interceptors>
+	
+	
 	
 </beans:beans>
