@@ -90,7 +90,7 @@
 								<div id="collapseOne" class="accordion-body in collapse">
 									<div class="accordion-inner">
 										<div class="row-fluid">
-										
+										<!-- ######################################## -->
 											<!-- 페이지 양면_ 왼쪽 -->										
 											<div class="span6">
 												<h4>Your Personal Details</h4>
@@ -126,7 +126,7 @@
 												</div>
 											</div>
 											 
-											 
+										<!-- ######################################## -->	 
 											<!-- 페이지 양면_ 오른쪽 --> 
 											 <div class="span6">
 												<h4>Your Address</h4>

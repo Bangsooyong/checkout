@@ -34,7 +34,7 @@ public class HomeController {
 		model.addAttribute("serverTime", formattedDate );
 		
 
-		return "email_check";
+		return "login_register";
 
 	}
 	
