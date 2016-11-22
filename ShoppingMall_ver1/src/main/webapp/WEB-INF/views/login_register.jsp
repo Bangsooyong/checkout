@@ -39,48 +39,93 @@ span.req {
 	color: maroon;
 	font-size: 112%;
 }
+
 </style>
-<link type="text/css"
-	href="<%=request.getContextPath()%>/resources/bootstrap/css/bootstrap-login.css"
-	rel="stylesheet" />
-
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-<script>
-	$(document).ready(function(){
-		
-	// 아이디 중복체크 Ajax , Controller RequestMapping : /checkid
-	/////////////////////////////////////////////////////
-
-	/////////////////////////////////////////////////////
-		
-		$("#b_id").change(function(){
-			$.ajax({
-				type : 'post',
-				url : 'checkid',
-				data : $("#b_id").val(),
-				success : function(result) {
-					if(result==1) {
-						$("#duplicationCheckResult").html("중복된 아이디입니다.");
-						$("#duplicationCheckResult").css("color", "red");
-						$("#b_id").css("color", "red");
-					} else {
-						$("#duplicationCheckResult").html("사용 가능한 아이디입니다.");
-						$("#duplicationCheckResult").css("color", "green");
-						$("#b_id").css("color", "green");
+	<link type="text/css"
+		href="<%=request.getContextPath()%>/resources/bootstrap/css/bootstrap-login.css"
+		rel="stylesheet" />
+	
+		<!-- jQuery CDN 설정 -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+	<script>
+	
+	/* 
+	
+	<div class="form-group">
+	<label for="b_id">아이디 &nbsp;&nbsp; <small id="duplicationCheckResult"></small>
+	</label> <input class="form-control" type="text" name="b_id" id="b_id"
+		 placeholder="아이디" required />
+	<div id=""></div>
+	</div>	
+	
+	*/
+	
+		// 아이디 중복체크 Ajax , Controller RequestMapping : /checkid
+		$(document).ready(function(){	
+			$("#b_id").change(function(){
+				$.ajax({
+					type : 'post',
+					url : 'checkid',
+					data : $("#b_id").val(),
+					success : function(result) {
+						if(result==1) {
+							$("#duplicationCheckResult").html("중복된 아이디입니다.");
+							$("#duplicationCheckResult").css("color", "red");
+							$("#b_id").css("color", "red");
+						} else {
+							$("#duplicationCheckResult").html("사용 가능한 아이디입니다.");
+							$("#duplicationCheckResult").css("color", "green");
+							$("#b_id").css("color", "green");
+						}
 					}
-				}
+				});
 			});
 		});
-/////////////////////////////////////////////////////
-/////////////////////////////////////////////////////
-/////////////////////////////////////////////////////
-		
+	</script>
+	
+	<script> // ##### 이메일 인증을 위한 Query
+	
+	 
+	var code; // 코드를 저장할 변수 지정	
+	 $(document).ready(function(){	
+			$('#showConfirmForm').click(function() {
+				//var email = $('#email').val();
+				alert('잠시만 기다려 주십시오...'); // TODO: Ajax로 이메일 보내는데 시간 문제가 있음...
+				$.ajax({
+					type : 'post',
+					url : 'checkemail',
+					data : $("#email").val(),
+					success : function(result) {
+						alert('인증번호가 전송되었습니다.');			
+						//if(result==1) {
+							$('#duplicationCheckResult2').html("전송 완료.");
+						// $('#duplicationCheckResult2').html(result);
+							$('#duplicationCheckResult2').css('color', 'green');
+							$('#email').css('color', 'green');
+							//$('#check_code').html(result);
+							code = result;
+							// $('#check_code').html(code);
+					}
+			});
+		});
+	 });
 
-		
-	});
-</script>
+	
+	// 인증번호 입력 확인시. code변수에 저장된 인증번호와 user가 쓴 인증번호 비교.
+	 $(document).ready(function(){	
+		$('#b_email_confirm_btn').click(function() {
+			if($('#b_email_input').val()==code){
+				alert('인증되었습니다');
+			} else {
+				alert('다시 입력하여 주십시오..');
+			}
+		});
+	 });
+	</script>
+
+
+
 
 </head>
 <body>
@@ -146,11 +191,11 @@ span.req {
 						</div>
 						<!-- -------------------------------------------------------------- -->
 						<div class="form-group">
-							<label for="b_email">이메일 주소 <small> 유효한 이메일임을
+							<label for="b_email">이메일 주소 &nbsp;&nbsp; <small id="duplicationCheckResult2"> 유효한 이메일임을
 									확인하기 위해서 확인메일을 보냅니다.</small>
 							</label>
 							<div class="input-group" id="b_email">
-								<input type="email" name="b_email" class="form-control"
+								<input type="email" id='email' name="b_email" class="form-control"
 									placeholder="이메일주소 입력 "> <span class="input-group-btn"
 									id="b_check">
 									<button class="btn btn-default" type="button"
@@ -162,11 +207,13 @@ span.req {
 						<!-- ------------------------------------------------------------------ -->
 
 						<div class="form-group" id="confirmForm_form-group">
-							<label for="b_email_input">승인번호 입력 <small> 이메일로 보낸
+							<label for="b_email_input">승인번호 입력 &nbsp;&nbsp; <small> 이메일로 보낸
 									승인번호를 입력해주세요.</small>
+									<!-- <small style="display:none;" id="check_code">hide</small> -->
+									<small id="check_code">hide</small> <!-- ### TEST ### 빠른 인증번호 확인을 위한 코드 -->
 							</label>
 							<div class="input-group" id="b_email_input-group">
-								<input type="text" name="b_email_input" class="form-control"
+								<input type="text" name="b_email_input" id = "b_email_input"class="form-control"
 									placeholder="승인번호 ex)1234 "> <span
 									class="input-group-btn" id="b_email_span">
 									<button class="btn btn-default" type="button"
