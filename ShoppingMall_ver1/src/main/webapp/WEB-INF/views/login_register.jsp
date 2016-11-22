@@ -216,7 +216,7 @@ span.req {
 							<label for="b_email_input">승인번호 입력 &nbsp;&nbsp; <small> 이메일로 보낸
 									승인번호를 입력해주세요.</small>
 									<!-- <small style="display:none;" id="check_code">hide</small> -->
-									<small id="check_code">hide</small> <!-- ### TEST ### 빠른 인증번호 확인을 위한 코드 -->
+									<!-- <small id="check_code">hide</small>  --><!-- ### TEST ### 빠른 인증번호 확인을 위한 코드 -->
 							</label>
 							<div class="input-group" id="b_email_input-group">
 								<input type="text" name="b_email_input" id = "b_email_input"class="form-control"

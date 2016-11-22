@@ -128,4 +128,15 @@ public class BuyerController {
 	}
 	
 	
+	// ### 템플릿
+	@RequestMapping(value="/main", method=RequestMethod.GET)
+	public String mainCheckout(Model model){
+		
+		logger.info("checkout 실행");
+
+	return "sudo_checkout";
+	
+	}	
+
+	
 } // end class
