@@ -84,10 +84,10 @@ public class BuyerController {
 			HttpSession session = request.getSession(true);
 			session.setAttribute("login_id", b_id);
 			logger.info("세션 저장 성공! key:login_id, 값 : "+b_id);
-			return "/UI/index";
+			return "redirect:/index";
 		} else {
 			logger.info("로그인 실패");
-			return "/UI/register";
+			return "redirect:/register";
 		}
 	}
 	

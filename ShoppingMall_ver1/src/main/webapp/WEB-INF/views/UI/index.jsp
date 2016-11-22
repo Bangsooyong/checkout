@@ -42,8 +42,8 @@
 					<div class="account pull-right">
 						<ul class="user-menu">				
 							<li><a href="#">My Account</a></li>
-							<li><a href="cart.html">Your Cart</a></li>
-							<li><a href="checkout.html">Checkout</a></li>		
+							<li><a href="cart">Your Cart</a></li>
+							<li><a href="checkout">Checkout</a></li>		
 						
 						<c:if test="${empty login_id}">
 						<li><a href="register">Login</a></li>	

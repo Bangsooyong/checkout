@@ -17,5 +17,24 @@ public class UIController {
 	public String openRegister(){
 		return "/UI/register";
 	}
+	
+	@RequestMapping(value="checkout", method=RequestMethod.GET)
+	public String openProduct(){
+		return "/UI/checkout";
+	}
+	
+	@RequestMapping(value="cart", method=RequestMethod.GET)
+	public String openCart(){
+		return "/UI/cart";
+	}
+	@RequestMapping(value="contact", method=RequestMethod.GET)
+	public String openContact(){
+		return "/UI/contact";
+	}
+	@RequestMapping(value="product_detail", method=RequestMethod.GET)
+	public String openProductDetail(){
+		return "/UI/product_detail";
+	}
+
 
 }
