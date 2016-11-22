@@ -89,32 +89,38 @@ span.req {
 	 
 	var code; // 코드를 저장할 변수 지정	
 	 $(document).ready(function(){	
-			$('#showConfirmForm').click(function() {
-				//var email = $('#email').val();
-				alert('잠시만 기다려 주십시오...'); // TODO: Ajax로 이메일 보내는데 시간 문제가 있음...
-				$.ajax({
-					type : 'post',
-					url : 'checkemail',
-					data : $("#email").val(),
-					success : function(result) {
-						alert('인증번호가 전송되었습니다.');			
-						//if(result==1) {
-							$('#duplicationCheckResult2').html("전송 완료.");
-						// $('#duplicationCheckResult2').html(result);
-							$('#duplicationCheckResult2').css('color', 'green');
-							$('#email').css('color', 'green');
-							//$('#check_code').html(result);
-							code = result;
-							// $('#check_code').html(code);
-					}
-			});
+		 $('#showConfirmForm').click(function() {
+				var email = $("#email").val();  
+				 var regex=/^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;  
+				 if(regex.test(email) === false) {  
+				     alert("잘못된 이메일 형식입니다.");  
+				     return false;  
+				 } else {    
+						alert('잠시만 기다려 주십시오...'); // TODO: Ajax로 이메일 보내는데 시간 문제가 있음...
+						$.ajax({
+							type : 'post',
+							url : 'checkemail',
+							data : $("#email").val(),
+							success : function(result) {
+								alert('인증번호가 전송되었습니다.');			
+								//if(result==1) {
+									$('#duplicationCheckResult2').html("전송 완료.");
+								// $('#duplicationCheckResult2').html(result);
+									$('#duplicationCheckResult2').css('color', 'green');
+									$('#email').css('color', 'green');
+									//$('#check_code').html(result);
+									code = result;
+									// $('#check_code').html(code);
+							}
+					});
+				 }  
 		});
 	 });
 
 	
 	// 인증번호 입력 확인시. code변수에 저장된 인증번호와 user가 쓴 인증번호 비교.
 	 $(document).ready(function(){	
-		$('#b_email_confirm_btn').click(function() {
+		 $('#b_email_confirm_btn').click(function() {
 			if($('#b_email_input').val()==code){
 				alert('인증되었습니다');
 			} else {
