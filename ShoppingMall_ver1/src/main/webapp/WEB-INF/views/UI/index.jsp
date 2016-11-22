@@ -1,9 +1,10 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta charset="utf-8">
+<html>
+<head>
+<meta charset="UTF-8">
 		<title>Bootstrap E-commerce Templates</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="description" content="">
@@ -42,8 +43,17 @@
 						<ul class="user-menu">				
 							<li><a href="#">My Account</a></li>
 							<li><a href="cart.html">Your Cart</a></li>
-							<li><a href="checkout.html">Checkout</a></li>					
-							<li><a href="register.html">Login</a></li>		
+							<li><a href="checkout.html">Checkout</a></li>		
+						
+						<c:if test="${empty login_id}">
+						<li><a href="register">Login</a></li>	
+						</c:if>
+								<c:if test="${not empty login_id }">
+								<!-- 세션에 로그인 정보가 있는 경우 -->
+								<c:url value="/buyer/logout" var="logout" />
+								<li><a href="${logout }">로그아웃</a></li>		
+								</c:if>			
+	
 						</ul>
 					</div>
 				</div>
@@ -52,7 +62,7 @@
 		<div id="wrapper" class="container">
 			<section class="navbar main-menu">
 				<div class="navbar-inner main-menu">				
-					<a href="index.html" class="logo pull-left"><img src=<c:url value='/resources/themes/images/logo.png' /> class="site_logo" alt=""></a>
+					<a href="index" class="logo pull-left"><img src=<c:url value='/resources/themes/images/logo.png' /> class="site_logo" alt=""></a>
 					<nav id="menu" class="pull-right">
 						<ul>
 							<li><a href="./products.html">Woman</a>					
@@ -341,7 +351,9 @@
 							<li><a href="./about.html">About Us</a></li>
 							<li><a href="./contact.html">Contac Us</a></li>
 							<li><a href="./cart.html">Your Cart</a></li>
-							<li><a href="./register.html">Login</a></li>							
+						<!-- ------------------------------------------------------  -->	
+							<li><a href="./register.html">Login.</a></li>							
+						<!-- ------------------------------------------------------  -->
 						</ul>					
 					</div>
 					<div class="span4">
