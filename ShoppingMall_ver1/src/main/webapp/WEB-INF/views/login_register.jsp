@@ -158,18 +158,15 @@ span.req {
 						<div class="form-group">
 							<label for="b_id">아이디 &nbsp;&nbsp; <small id="duplicationCheckResult"></small>
 							</label> <input class="form-control" type="text" name="b_id" id="b_id"
-								 placeholder="아이디" required />
-							<div id=""></div>
+								 placeholder="아이디" required />		
 						</div>
 
 						<div class="form-group">
 							<label for="b_pw">비밀번호 </label> <input required
 								name="b_pw" type="password" class="form-control inputpass"
-								minlength="4" maxlength="16" id="pass1" placeholder="비밀번호" />
-							<!-- <p> -->
+								minlength="4" maxlength="16" id="pass1" placeholder="비밀번호" /><br>
 
 							<label for="b_pw_check">비밀번호 확인 &nbsp;&nbsp;<span
-							
 								id="confirmMessage" class="confirmMessage"></span> </label> <input required name="b_pw_check"
 								type="password" class="form-control inputpass" minlength="4"
 								maxlength="16" placeholder="비밀번호 확인(위와 동일하게 입력하세요)" id="pass2"

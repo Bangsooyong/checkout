@@ -83,7 +83,7 @@ public class BuyerController {
 		if (buyerService.isValidUser(b_id, b_pw)){
 			logger.info("로그인 성공");
 			HttpSession session = request.getSession(true);
-			session.setAttribute("loginInfo", query);
+			session.setAttribute("login_id", b_id);
 		} else {
 			logger.info("로그인 실패");
 		}
