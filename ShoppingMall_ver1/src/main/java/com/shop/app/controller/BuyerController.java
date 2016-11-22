@@ -127,27 +127,15 @@ public class BuyerController {
 		//return "email_result";
 	}
 	
-/*	@RequestMapping(value="/checkcode", method=RequestMethod.POST)
-	public void checkCode(@RequestBody String code, HttpServletResponse response) throws IOException{
+	
+	// ### 템플릿
+	@RequestMapping(value="/main", method=RequestMethod.GET)
+	public String mainCheckout(Model model){
 		
-		logger.info("checkCode 실행");
+		logger.info("checkout 실행");
 
-		
-		// 필요없는 문자열을 제거
-		String b_id = userid.substring(0, userid.length()-1);
-		
-		// DB에서 입력한 문자열 검색
-		BuyerVO vo = buyerService.read(b_id);
-		
-		// DB에 있다면 중복...
-		if (vo!=null){
-			String selectedID = vo.getB_id();
-			logger.info("selectedID"+selectedID);
-			response.getWriter().print(1);
-		}
-	}*/
+	return "sudo_checkout";
 	
-	
-	
+	}	
 	
 } // end class
