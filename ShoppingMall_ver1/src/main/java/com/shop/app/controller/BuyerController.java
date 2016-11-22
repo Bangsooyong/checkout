@@ -84,9 +84,19 @@ public class BuyerController {
 			logger.info("로그인 성공");
 			HttpSession session = request.getSession(true);
 			session.setAttribute("login_id", b_id);
+			logger.info("세션 저장 성공! key:login_id, 값 : "+b_id);
 		} else {
 			logger.info("로그인 실패");
 		}
+	}
+	
+	@RequestMapping(value="logout", method=RequestMethod.GET)
+	public String logout(HttpServletRequest request){
+		HttpSession session = request.getSession();
+		session.removeAttribute("login_id");
+		session.invalidate();	
+		logger.info("세션 비우기 성공!");
+		return "/login/login"; // requestMapping에 login으로 다시 돌아감.. 로그인페이지 열림
 	}
 	
 ////////////////////////////////////////////////////////////////////////////////////////////////////

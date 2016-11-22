@@ -33,7 +33,7 @@
 	<script>
 		$(document).ready(function() {
 			$('#btnLogout').click(function() {
-				location = '/ex04/member/logout';
+				location = '/shop01/login/logout';
 			})
 		})
 	</script>

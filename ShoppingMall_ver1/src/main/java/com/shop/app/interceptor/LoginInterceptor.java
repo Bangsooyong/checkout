@@ -70,7 +70,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
 				response.sendRedirect((String) dest);
 			} else {
 				// 저장된 요청 주소가 없는 경우에는 홈페이지로 이동
-				response.sendRedirect("/shop01"); // 메인페이지로 리다이렉트	
+				response.sendRedirect("/shop01/login"); // 메인페이지로 리다이렉트	
 			}
 			
 		} else { // DB에 일치하는 회원 정보가 없는 경우
