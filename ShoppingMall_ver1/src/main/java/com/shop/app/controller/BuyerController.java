@@ -22,7 +22,7 @@ import com.shop.app.domain.BuyerVO;
 import com.shop.app.service.BuyerService;
 
 @Controller // 스프링 프레임워크에 Controller bean 객체로 등록
-@RequestMapping(value="/login")
+@RequestMapping(value="/buyer")
 public class BuyerController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(BuyerController.class);
@@ -34,7 +34,7 @@ public class BuyerController {
 	BuyerService buyerService;
 
 	// 회원가입 양식 호출
-	@RequestMapping(value="/register", method=RequestMethod.GET)
+	@RequestMapping(value="/registerForm", method=RequestMethod.GET)
 	public String login(Model model) {
 		return "login_register";
 	}
@@ -76,8 +76,7 @@ public class BuyerController {
 	public void openLoginJSP(){}
 	
 	@RequestMapping(value="login", method=RequestMethod.POST)
-	public void login(String b_id, String b_pw, HttpServletRequest request, String query){	
-
+	public String login(String b_id, String b_pw, HttpServletRequest request, String query){	
 		logger.info("login 컨트롤러 실행");
 		logger.info("b_id : "+b_id+" , b_pw : "+b_pw);
 		if (buyerService.isValidUser(b_id, b_pw)){
@@ -85,8 +84,10 @@ public class BuyerController {
 			HttpSession session = request.getSession(true);
 			session.setAttribute("login_id", b_id);
 			logger.info("세션 저장 성공! key:login_id, 값 : "+b_id);
+			return "redirect:/index";
 		} else {
 			logger.info("로그인 실패");
+			return "redirect:/register";
 		}
 	}
 	
@@ -96,7 +97,7 @@ public class BuyerController {
 		session.removeAttribute("login_id");
 		session.invalidate();	
 		logger.info("세션 비우기 성공!");
-		return "/login/login"; // requestMapping에 login으로 다시 돌아감.. 로그인페이지 열림
+		return "redirect:/"; // requestMapping에 login으로 다시 돌아감.. 로그인페이지 열림
 	}
 	
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -128,8 +129,7 @@ public class BuyerController {
 		message.setSubject("쇼핑몰 인증번호");  // 이메일 제목
 		message.setText("인증번호 : " + code);  // 이메일 내용
 		
-			logger.info("보낸 코드 : " + code);
-		
+		logger.info("보낸 코드 : " + code);
 		mailSender.send(message);  // 이메일 전송
 		// model.addAttribute("code", code);
 		
