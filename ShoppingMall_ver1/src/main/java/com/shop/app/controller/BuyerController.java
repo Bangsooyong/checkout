@@ -137,7 +137,6 @@ public class BuyerController {
 		//return "email_result";
 	}
 	
-	
 	// ### 템플릿
 	@RequestMapping(value="/main", method=RequestMethod.GET)
 	public String mainCheckout(Model model){

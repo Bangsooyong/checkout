@@ -15,7 +15,7 @@ public class UIController {
 	
 	@RequestMapping(value="register", method=RequestMethod.GET)
 	public String openRegister(){
-		return "/UI/register";
+		return "/sudo_loginSelect";
 	}
 	
 	@RequestMapping(value="checkout", method=RequestMethod.GET)
