@@ -146,7 +146,7 @@ span.req {
 								<!-- <small> * 표시는 필수</small> -->
 							</span>
 						</legend>
-
+						<!-- -------------------------------------------------------------- -->
 						<div class="form-group">
 							<label>
 								<!-- <span class="req">* </span>  -->이름
@@ -154,13 +154,14 @@ span.req {
 								required placeholder="홍길동" />
 							<div id="errFirst"></div>
 						</div>
+						<!-- -------------------------------------------------------------- -->
 						<!-- onkeyup="Validate(this)" -->
 						<div class="form-group">
 							<label for="b_id">아이디 &nbsp;&nbsp; <small id="duplicationCheckResult"></small>
 							</label> <input class="form-control" type="text" name="b_id" id="b_id"
 								 placeholder="아이디" required />		
 						</div>
-
+						<!-- -------------------------------------------------------------- -->
 						<div class="form-group">
 							<label for="b_pw">비밀번호 </label> <input required
 								name="b_pw" type="password" class="form-control inputpass"
@@ -172,7 +173,7 @@ span.req {
 								maxlength="16" placeholder="비밀번호 확인(위와 동일하게 입력하세요)" id="pass2"
 								onkeyup="checkPass(); return false;" /> 
 						</div>
-
+						<!-- -------------------------------------------------------------- -->
 						<div class="form-group">
 							<label for="b_phone"> 전화번호/휴대폰번호 </label> <input required
 								type="number" name="b_phone" id="phone"
@@ -180,14 +181,14 @@ span.req {
 								
 								placeholder="( - )은 빼고 입력하세요. ex) 01012345424" />
 						</div>
-
+						<!-- -------------------------------------------------------------- -->
 						<div class="form-group">
 							<label for="b_gender">성별</label> <label class="radio-inline"><input
 								type="radio" name="b_gender" value="1" checked>남자</label> <label
 								class="radio-inline"><input type="radio" name="b_gender"
 								value="2">여자</label>
 						</div>
-
+						<!-- -------------------------------------------------------------- -->
 						<div class="form-group">
 							<label for="b_birth">생년월일</label><input class="form-control"
 								required type="date" name="b_birth" placeholder="생년월일 ex)901214">
@@ -237,7 +238,7 @@ span.req {
 								<input class="form-control inputpass" type="text" name="b_addr2"
 								id="sample6_address2" placeholder="나머지 상세 주소">
 						</div>
-
+						<!-- -------------------------------------------------------------- -->
 						<div class="form-group" style="text-align: center">
 							<input class="btn btn-success" type="submit" name="submit_reg"
 								value="가입하기">

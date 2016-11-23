@@ -144,8 +144,8 @@ public class BuyerController {
 		
 		logger.info("checkout 실행");
 
-	return "sudo_checkout";
-	
+	// return "sudo_checkout";
+	return "sudo_checkout2";
 	}	
 
 	
