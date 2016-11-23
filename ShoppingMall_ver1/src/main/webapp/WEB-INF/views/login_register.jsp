@@ -183,10 +183,12 @@ span.req {
 						</div>
 						<!-- -------------------------------------------------------------- -->
 						<div class="form-group">
-							<label for="b_gender">성별</label> <label class="radio-inline"><input
-								type="radio" name="b_gender" value="1" checked>남자</label> <label
-								class="radio-inline"><input type="radio" name="b_gender"
-								value="2">여자</label>
+							<label for="b_gender">성별</label> 
+							<label class="radio-inline">
+								<input type="radio" name="b_gender" value="1" checked>남자
+							</label>
+							<label class="radio-inline"><input type="radio" name="b_gender" value="2">여자
+							</label>
 						</div>
 						<!-- -------------------------------------------------------------- -->
 						<div class="form-group">
