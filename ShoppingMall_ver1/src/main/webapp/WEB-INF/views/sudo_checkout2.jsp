@@ -144,7 +144,7 @@
 												alert("잘못된 이메일 형식입니다.");
 												return false;
 											} else {
-												alert('잠시만 기다려 주십시오...'); // TODO: Ajax로 이메일 보내는데 시간 문제가 있음...
+												alert('인증번호가 전송되는 동안 잠시만 기다려 주십시오...'); // TODO: Ajax로 이메일 보내는데 시간 문제가 있음...
 												$
 														.ajax({
 															type : 'post',
@@ -210,6 +210,9 @@
 	clear: both;
 } 
 
+ label {
+ 	clear: left;
+ }
 
 input[type=radio],
 input.radio {
@@ -225,7 +228,11 @@ input.radio {
 
 
 
+<!--  TEST -->
+<style>
 
+
+</style>
 
 </head><!-- -------------------------------------------------------------- -->
 
@@ -291,10 +298,11 @@ input.radio {
 			<div class="row">
 				<div class="span12">
 					<div class="accordion" id="accordion2">
+						<!-- 구매자 회원가입 -->
 						<div class="accordion-group">
 							<div class="accordion-heading">
 								<a class="accordion-toggle" data-toggle="collapse"
-									data-parent="#accordion2" href="#collapseOne">구매자 회원가입</a>
+									data-parent="#accordion2" href="#collapseOne">Sign up for Buyer</a>
 							</div>
 							<div id="collapseOne" class="accordion-body in collapse">
 								<div class="accordion-inner">
@@ -382,9 +390,20 @@ input.radio {
 												</div>
 											 </div><!-- ### 완료 ###-->
 
+											
+											<!-- -------------------------------------------------------------- -->
+											
+											<div class="control-group">
+												<label class="phone-lbl" for="b_phone"> 전화번호/휴대폰번호 </label>
+												<div class="controls">
+												 <input required type="number" name="b_phone" id="phone"
+													class="input-xlarge" maxlength="28" 
+													placeholder="( - )은 빼고 입력하세요. ex) 01012345424" />
+												</div>
+											</div>
 											 
 											<!-- -------------------------------------------------------------- -->
-											<div class="form-group">
+											<div class="control-group">
 												<label for="b_gender">성별</label> 
 												<label class="radio-inline">
 													<input type="radio" name="b_gender" value="1" checked>남자
@@ -394,7 +413,9 @@ input.radio {
 												</label>
 											</div> <!-- ### 완료 ###-->
 											 <br>
-											<!-- -------------------------------------------------------------- -->
+											
+											
+											
 										</div>
 
 
@@ -469,6 +490,8 @@ input.radio {
 												</div>
 											</div>
 											 -->
+											 
+											 
 											 <div class="control-group">
 											 	<label for="b_email">이메일 주소 &nbsp;&nbsp; 
 											 	<!-- <small id="duplicationCheckResult2">
@@ -476,12 +499,18 @@ input.radio {
 												</label>
 												<div class="controls" id="b_email">
 													<input type="email" id='email' name="b_email" class="input-xlarge"
-														placeholder="이메일주소 입력 "> <span class="input-group-btn"
-														id="b_check">
+														placeholder="이메일주소 입력 ">
+														
+												    <span class="input-group-btn" id="b_check">
 														<button type="button" name="btn_for_check" id="showConfirmForm">승인번호 얻기</button>
-													</span>
+													</span> 
 												</div>
 											 </div>
+											 
+											 
+											 
+											 
+											 
 											 
 											<!--
 											 TODO : input text with button design 텍스트와 버튼 합치기
@@ -577,49 +606,220 @@ input.radio {
 													</select>
 												</div>
 											</div>
-											--------------------------------------------------------------
-											<div class="control-group">
-												<label class="control-label"><span class="required">*</span>
-													Region / State:</label>
-												<div class="controls">
-													<select name="zone_id" class="input-xlarge">
-														<option value="">--- Please Select ---</option>
-														<option value="3513">Aberdeen</option>
-														<option value="3514">Aberdeenshire</option>
-														<option value="3515">Anglesey</option>
-														<option value="3516">Angus</option>
-														<option value="3517">Argyll and Bute</option>
-													</select>
-												</div>
-											</div>
+											-----------------------------TEST--------------------------------- -->
 											
-											
-											
-											<!-- ############### TEST ############### -->
-											
-											
-											
-											
-											
-											
-											
-											
-											
-											
-											
-											
-											
+
 											<!-- -------------------------------------------------------------- -->
 										</div>
-
+														
 									</form>
 
 									</div>
 								</div>
 							</div>
-						</div>
+						</div><!-- End 구매자 회원가입 -->
+						
+						
+						
+						
+						
+						
+						
+						
+						<div class="accordion-group">
+							<div class="accordion-heading">
+								<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
+								Sign up for Seller</a>
+							</div>
+							<div id="collapseTwo" class="accordion-body collapse">
+								<div class="accordion-inner">
+									<div class="row-fluid">
+									<h4 class="title"><span class="text"><strong>Register</strong> Form</span></h4>
+									<form action="login_result" method="post" id="fileForm" role="form">
+										<!-- ######################################## -->
+										<!-- 왼쪽 -->
+										<div class="span6">
+											
+											<!-- -------------------------------------------------------------- -->
+											
+												 
+											<div class="control-group">
+												<label>이름</label> 
+												<div class="controls">
+													<input class="input-xlarge" type="text" name="b_name" id="txt"
+														required placeholder="홍길동" />
+												</div>
+											</div><!-- ### 완료 ###-->
+											 
+											<!-- -------------------------------------------------------------- -->
+											
+											<div class="control-group">
+												<label for="b_id">아이디 &nbsp;&nbsp; 
+													<span id="duplicationCheckResult"></span> 
+												</label> 
+												<div class="controls">
+													<input class="input-xlarge" type="text" name="b_id"
+														id="b_id" placeholder="아이디" required />
+												</div>
+											</div><!-- ### 완료 ###-->
+											<!-- -------------------------------------------------------------- -->
+											
+											 <div class="control-group">
+											 	<label for="b_pw">비밀번호 </label> 
+											 	<div class="controls">
+												 	<input required name="b_pw" type="password" class="input-xlarge"
+														minlength="4" maxlength="16" id="pass1" placeholder="비밀번호" />
+												</div>
+											 </div><!-- ### 완료 ###-->
+											 
+											<!-- -------------------------------------------------------------- -->
+											
+											 <div class="control-group">
+												<label for="b_pw_check">비밀번호 확인 &nbsp;&nbsp;
+													<span id="confirmMessage"></span> 
+												</label> 
+												<div class="controls">
+													<input required name="b_pw_check"
+														type="password" class="input-xlarge" minlength="4"
+														maxlength="16" placeholder="비밀번호 확인(위와 동일하게 입력하세요)" id="pass2"
+														onkeyup="checkPass(); return false;" /> 
+												</div>
+											 </div><!-- ### 완료 ###-->
 
-					</div>
+											 
+											<!-- -------------------------------------------------------------- -->
+											<div class="form-group">
+												<label for="b_gender">성별</label> 
+												<label class="radio-inline">
+													<input type="radio" name="b_gender" value="1" checked>남자
+												</label> 
+												<label class="radio-inline">
+													<input type="radio" name="b_gender" value="2">여자
+												</label>
+											</div> <!-- ### 완료 ###-->
+											 <br>
+											<!-- -------------------------------------------------------------- -->
+										</div>
+
+
+
+
+
+
+
+
+
+
+										<!-- ######################################## -->
+										<!-- 오른쪽 -->
+										<div class="span6">
+										
+											<!-- -------------------------------------------------------------- -->
+											
+											<div class="control-group">
+												<label class="birth-lbl" for="b_birth">생년월일</label>
+												<div class="controls">
+													<input class="input-xlarge" required type="date" name="b_birth" placeholder="생년월일 ex)901214">
+												</div>
+											</div>										 
+											<!-- -------------------------------------------------------------- -->
+											
+											 <div class="control-group">
+											 	<label for="b_email">이메일 주소 &nbsp;&nbsp; 
+											 	<!-- <small id="duplicationCheckResult2">
+											 	 	유효한 이메일임을 확인하기 위해서 확인메일을 보냅니다.</small> -->
+												</label>
+												<div class="controls" id="b_email">
+													<input type="email" id='email' name="b_email" class="input-xlarge"
+														placeholder="이메일주소 입력 ">
+												    <span class="input-group-btn" id="b_check">
+														<button type="button" name="btn_for_check" id="showConfirmForm">승인번호 얻기</button>
+													</span>
+												</div>
+											 </div>
+											 
+											<!--
+											 TODO : input text with button design 텍스트와 버튼 합치기
+											 http://blog.naver.com/PostView.nhn?blogId=rwans0397&logNo=220696890907
+											 -->	
+												
+											<!-- -------------------------------------------------------------- -->
+											
+											<div class="form-group" id="confirmForm_form-group">
+												<label for="b_email_input">승인번호 입력 &nbsp;&nbsp; 
+												<!-- <small> 이메일로 보낸 승인번호를 입력해주세요.</small> -->
+														<!-- <small style="display:none;" id="check_code">hide</small> -->
+														<!-- <small id="check_code">hide</small>  --><!-- ### TEST ### 빠른 인증번호 확인을 위한 코드 -->
+												</label>
+												<div class="controls" id="b_email_input-group">
+													<input type="text" name="b_email_input" id = "b_email_input"class="input-xlarge"
+														placeholder="승인번호 ex)1234 "> <span
+														class="input-group-btn" id="b_email_span">
+														<button type="button" name="b_email_btn" id="b_email_confirm_btn">확인</button>
+													</span>
+												</div>
+											</div>
+
+											<!-- -------------------------------------------------------------- -->
+
+											<div class="control-group">
+												<label for="b_zip">주소</label>
+												<div class="controls">
+													<input class="input-xlarge" type="text" name="b_zip"
+														id="sample6_postcode" placeholder="우편번호를 찾으려면 클릭하세요"
+														onclick="sample6_execDaumPostcode()"> <br>
+													<input class="input-xlarge" type="text" name="b_addr1"
+														id="sample6_address" placeholder="지번 / 도로명주소"
+														readonly="readonly"><br> 
+													<input class="input-xlarge" type="text" name="b_addr2"
+														id="sample6_address2" placeholder="나머지 상세 주소">
+												</div>
+											</div>
+											<!-- -------------------------------------------------------------- -->
+
+											<div class="actions">
+												<input tabindex="9" class="btn btn-inverse large" type="submit" value="Create your account">
+											</div>
+											<br>
+											
+										</div>
+														
+									</form>
+
+									</div>
+								</div>
+							</div>
+						</div><!-- End 판매자 회원가입 -->
+						
+						
+						
+						
+						
+						<!-- -------------------------------------------------------------- -->
+							<div class="accordion-group">
+								<div class="accordion-heading">
+									<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree">Confirm Order</a>
+								</div>
+								<div id="collapseThree" class="accordion-body collapse">
+									<div class="accordion-inner">
+										<div class="row-fluid">
+											<div class="control-group">
+												<label for="textarea" class="control-label">Comments</label>
+												<div class="controls">
+													<textarea rows="3" id="textarea" class="span12"></textarea>
+												</div>
+											</div>									
+											<button class="btn btn-inverse pull-right">Confirm order</button>
+										</div>
+									</div>
+								</div>
+							</div>	
+							
+							
+							
+							
+							
+					</div><!-- #### -->
 				</div>
 			</div>
 		</section>
@@ -660,10 +860,9 @@ input.radio {
 			</div>
 		</section>
 		<section id="copyright">
-			<span>Copyright 2013 bootstrappage template All right
-				reserved.</span>
+			<span>December 2016 Web Project All right.</span>
 		</section>
 	</div>
-	<script src="themes/js/common.js"></script>
+	<!-- <script src="/shop01/resources/themes/js/common.js"/></script> -->
 </body>
 </html>

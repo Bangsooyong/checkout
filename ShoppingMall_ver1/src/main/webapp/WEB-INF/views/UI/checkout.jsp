@@ -83,6 +83,8 @@
 				<div class="row">
 					<div class="span12">
 						<div class="accordion" id="accordion2">
+						<!-- -------------------------------------------------------------- -->
+						
 							<div class="accordion-group">
 								<div class="accordion-heading">
 									<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">Checkout Options</a>
@@ -131,6 +133,8 @@
 									</div>
 								</div>
 							</div>
+							<!-- -------------------------------------------------------------- -->
+							
 							<div class="accordion-group">
 								<div class="accordion-heading">
 									<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">Account &amp; Billing Details</a>
@@ -240,6 +244,7 @@
 									</div>
 								</div>
 							</div>
+							<!-- -------------------------------------------------------------- -->
 							<div class="accordion-group">
 								<div class="accordion-heading">
 									<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree">Confirm Order</a>
@@ -258,6 +263,10 @@
 									</div>
 								</div>
 							</div>
+							<!-- -------------------------------------------------------------- -->
+							
+							
+							
 						</div>				
 					</div>
 				</div>

@@ -127,7 +127,7 @@ public class BuyerController {
 			logger.info("메일 주소 : " + b_email);
 		
 		message.setSubject("쇼핑몰 인증번호");  // 이메일 제목
-		message.setText("인증번호 : " + code);  // 이메일 내용
+		message.setText("본인인증번호는 [ " + code + " ] 입니다. 정확히 입력해주세요");  // 이메일 내용
 		
 		logger.info("보낸 코드 : " + code);
 		mailSender.send(message);  // 이메일 전송
@@ -146,6 +146,16 @@ public class BuyerController {
 	// return "sudo_checkout";
 	return "sudo_checkout2";
 	}	
+	
+	// ### 템플릿
+	@RequestMapping(value="/base", method=RequestMethod.GET)
+	public String baseCheckout(Model model){
+		
+		logger.info("checkout 실행");
+
+	
+	return "/UI/checkout";
+	}
 
 	
 } // end class
