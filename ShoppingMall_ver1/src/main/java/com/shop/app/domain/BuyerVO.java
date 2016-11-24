@@ -6,19 +6,21 @@ public class BuyerVO {
 	
 	public BuyerVO(){};
 	
-	private int b_no;
-	private String b_id;//
-	private String b_pw;//
-	private String b_name;//
-	private int b_gender;//
-	private String b_birth;//
-	private int b_phone;//
-	private String b_email;//
-	private String b_zip;//
-	private String b_addr1;//
-	private String b_addr2;//
-	private Date b_reg;
-	private int b_mile;
+	private int b_no; // 인덱스
+	private String b_id;// 아이디
+	private String b_pw;// 비밀번호
+	private String b_name;// 이름
+	private int b_gender;// 성별
+	private String b_birth;// 생년월일
+	private int b_phone;// 연락처 
+	private String b_email;// 이메일
+	private String b_zip;// 우편번호
+	private String b_addr1;// 주소
+	private String b_addr2;// 상세주소
+	private Date b_reg; // 생성일
+	
+	// Only Buyer
+	private int b_mile; // 마일리지
 
 	
 ///////////////////회원 가입을 위한 매개변수 있는 생성자(마일리지 제외)////////////////////
@@ -159,6 +161,14 @@ public class BuyerVO {
 
 	public void setB_reg(Date b_reg) {
 		this.b_reg = b_reg;
+	}
+
+	public int getB_mile() {
+		return b_mile;
+	}
+
+	public void setB_mile(int b_mile) {
+		this.b_mile = b_mile;
 	}
 
 	
