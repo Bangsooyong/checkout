@@ -298,6 +298,7 @@ input.radio {
 			<div class="row">
 				<div class="span12">
 					<div class="accordion" id="accordion2">
+					<!-- // TODO -->
 						<!-- 구매자 회원가입 -->
 						<div class="accordion-group">
 							<div class="accordion-heading">

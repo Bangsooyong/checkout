@@ -20,7 +20,7 @@ public class UIController {
 	
 	@RequestMapping(value="checkout", method=RequestMethod.GET)
 	public String openProduct(){
-		return "/UI/checkout";
+		return "/sudo_checkout2";
 	}
 	
 	@RequestMapping(value="cart", method=RequestMethod.GET)

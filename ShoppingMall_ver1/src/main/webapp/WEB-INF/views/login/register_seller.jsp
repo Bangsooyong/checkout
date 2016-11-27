@@ -298,13 +298,14 @@ input.radio {
 			<div class="row">
 				<div class="span12">
 					<div class="accordion" id="accordion2">
+					<!-- // TODO -->
 						<!-- 구매자 회원가입 -->
 						<div class="accordion-group">
 							<div class="accordion-heading">
 								<a class="accordion-toggle" data-toggle="collapse"
 									data-parent="#accordion2" href="#collapseOne">Sign up for Buyer</a>
 							</div>
-							<div id="collapseOne" class="accordion-body in collapse">
+							<div id="collapseOne" class="accordion-body collapse">
 								<div class="accordion-inner">
 									<div class="row-fluid">
 									<h4 class="title"><span class="text"><strong>Register</strong> Form</span></h4>
@@ -625,13 +626,14 @@ input.radio {
 						
 						
 						
-						
+						<!-- // TODO -->
+						<!-- 판매자 회원가입 -->
 						<div class="accordion-group">
 							<div class="accordion-heading">
-								<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
-								Sign up for Seller</a>
+								<a class="accordion-toggle" data-toggle="collapse"
+									data-parent="#accordion2" href="#collapseTwo">Sign up for Seller</a>
 							</div>
-							<div id="collapseTwo" class="accordion-body collapse">
+							<div id="collapseOne" class="accordion-body in collapse"><!--TODO: ccordion-body collapse  -->
 								<div class="accordion-inner">
 									<div class="row-fluid">
 									<h4 class="title"><span class="text"><strong>Register</strong> Form</span></h4>

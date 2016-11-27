@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="com.shop.app.SellerMapper">
+      
+      <insert id = "seller-insert">
+         insert into s_tbl_seller(s_id, s_pw, s_name, s_gender, s_birth, s_phone, s_email, s_zip, s_addr1, s_addr2)
+         values(#{s_id}, #{s_pw}, #{s_name}, #{s_gender}, #{s_birth}, #{s_phone}, #{s_email}, #{s_zip}, #{s_addr1}, #{s_addr2}) 
+      </insert>
+      
+      <select id = "select-by-s_id" resultType = "com.shop.app.domain.SellerVO">
+          select * from s_tbl_seller where s_id = #{s_id}          
+      </select>
+      
+      <select id = "seller-login" resultType="Integer">
+          select count(1) from s_tbl_seller where s_id = #{s_id} and s_pw = #{s_pw}
+      </select>
+  </mapper>

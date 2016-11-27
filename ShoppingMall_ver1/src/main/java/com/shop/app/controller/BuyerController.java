@@ -33,11 +33,20 @@ public class BuyerController {
 	@Autowired
 	BuyerService buyerService;
 
-	// 회원가입 양식 호출
-	@RequestMapping(value="/registerForm", method=RequestMethod.GET)
-	public String login(Model model) {
-		return "login_register";
-	}
+	
+	/* ----------------------------------------------------------------------------------------------------- */
+	
+	// ### 회원가입 메인
+	@RequestMapping(value="/main", method=RequestMethod.GET)
+	public String mainCheckout(Model model){
+		
+		logger.info("checkout 실행");
+
+	// return "sudo_checkout2";
+	return "/login/register_buyer";
+	}	
+	
+	/* ----------------------------------------------------------------------------------------------------- */
 
 	// login_register 아이디 중복체크 컨트롤러
 	@RequestMapping(value="/checkid", method=RequestMethod.POST)
@@ -58,51 +67,11 @@ public class BuyerController {
 			logger.info("selectedID"+selectedID);
 			response.getWriter().print(1);
 		}
-	}
+	}	
 	
-	////////////////////////////////////////////////////////////////
-	// 회원가입 컨트롤러
-	@RequestMapping(value="/login_result", method=RequestMethod.POST)
-	public String login_result(BuyerVO vo){
-		// login1 폼에서 입력받은 값을 vo 에 넣어서 insert합니다.
-		// 아이디가 PK라서 같은 아이디 두번넣으면 에러남.
-		buyerService.insert(vo);
-		logger.info("회원가입 성공! ");
-		return "login_result";
-	}
+	/* ----------------------------------------------------------------------------------------------------- */
 	
-
-	@RequestMapping(value="login", method=RequestMethod.GET)
-	public void openLoginJSP(){}
-	
-	@RequestMapping(value="login", method=RequestMethod.POST)
-	public String login(String b_id, String b_pw, HttpServletRequest request, String query){	
-		logger.info("login 컨트롤러 실행");
-		logger.info("b_id : "+b_id+" , b_pw : "+b_pw);
-		if (buyerService.isValidUser(b_id, b_pw)){
-			logger.info("로그인 성공");
-			HttpSession session = request.getSession(true);
-			session.setAttribute("login_id", b_id);
-			logger.info("세션 저장 성공! key:login_id, 값 : "+b_id);
-			return "redirect:/index";
-		} else {
-			logger.info("로그인 실패");
-			return "redirect:/register";
-		}
-	}
-	
-	@RequestMapping(value="logout", method=RequestMethod.GET)
-	public String logout(HttpServletRequest request){
-		HttpSession session = request.getSession();
-		session.removeAttribute("login_id");
-		session.invalidate();	
-		logger.info("세션 비우기 성공!");
-		return "redirect:/"; // requestMapping에 login으로 다시 돌아감.. 로그인페이지 열림
-	}
-	
-////////////////////////////////////////////////////////////////////////////////////////////////////
-	
-	// 인증번호 발송
+	// 이메일 인증번호 발송
 	@RequestMapping(value = "/checkemail", method = RequestMethod.POST)
 	public void checkEmail(@RequestBody String email, HttpServletResponse response) throws IOException {
 		logger.info("email: " + email);
@@ -137,17 +106,52 @@ public class BuyerController {
 		//return "email_result";
 	}
 	
-	// ### 템플릿
-	@RequestMapping(value="/main", method=RequestMethod.GET)
-	public String mainCheckout(Model model){
-		
-		logger.info("checkout 실행");
-
-	// return "sudo_checkout";
-	return "sudo_checkout2";
-	}	
 	
-	// ### 템플릿
+	/* ----------------------------------------------------------------------------------------------------- */
+
+	// 가입완료 버튼 클릭
+	@RequestMapping(value="/register_result", method=RequestMethod.POST)
+	public String login_result(BuyerVO vo){
+		// login1 폼에서 입력받은 값을 vo 에 넣어서 insert합니다.
+		// 아이디가 PK라서 같은 아이디 두번넣으면 에러남.
+		buyerService.insert(vo);
+		logger.info("회원가입 성공! ");
+		return "login_result"; // TODO: 성공시 메인화면으로 보내야 함.
+	}
+	
+	/* ----------------------------------------------------------------------------------------------------- */
+	
+////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	@RequestMapping(value="login", method=RequestMethod.POST)
+	public String login(String b_id, String b_pw, HttpServletRequest request, String query){	
+		logger.info("login 컨트롤러 실행");
+		logger.info("b_id : "+b_id+" , b_pw : "+b_pw);
+		if (buyerService.isValidUser(b_id, b_pw)){
+			logger.info("로그인 성공");
+			HttpSession session = request.getSession(true);
+			session.setAttribute("login_id", b_id);
+			logger.info("세션 저장 성공! key:login_id, 값 : "+b_id);
+			return "redirect:/index";
+		} else {
+			logger.info("로그인 실패");
+			return "redirect:/register";
+		}
+	}
+	
+	@RequestMapping(value="logout", method=RequestMethod.GET)
+	public String logout(HttpServletRequest request){
+		HttpSession session = request.getSession();
+		session.removeAttribute("login_id");
+		session.invalidate();	
+		logger.info("세션 비우기 성공!");
+		return "redirect:/"; // requestMapping에 login으로 다시 돌아감.. 로그인페이지 열림
+	}
+	
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	
+/*	// ### TEST
 	@RequestMapping(value="/base", method=RequestMethod.GET)
 	public String baseCheckout(Model model){
 		
@@ -155,7 +159,7 @@ public class BuyerController {
 
 	
 	return "/UI/checkout";
-	}
+	}*/
 
 	
 } // end class
