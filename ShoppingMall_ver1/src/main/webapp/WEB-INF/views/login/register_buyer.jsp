@@ -13,6 +13,7 @@
 <link
 	href="<c:url value='/resources/bootstrap/css/bootstrap.min.css' />"
 	rel="stylesheet">
+	
 <link
 	href="<c:url value='/resources/bootstrap/css/bootstrap-responsive.min.css' />"
 	rel="stylesheet">
@@ -409,7 +410,8 @@ input.radio {
 													</div>
 												</div>
 												 -->
-												 
+												 <!-- Latest compiled and minified CSS -->
+										 
 											<div class="control-group">
 												<label>이름</label> 
 												<div class="controls">

@@ -82,7 +82,7 @@ public class BuyerController {
 	@RequestMapping(value="/s_checkid", method=RequestMethod.POST)
 	public void s_checkid(@RequestBody String userid, HttpServletResponse response) throws IOException{
 		
-		logger.info("checkid 실행");
+		logger.info("s_checkid 실행");
 		// logger.info("userid : " + userid);
 		
 		// 필요없는 문자열을 제거
@@ -92,7 +92,6 @@ public class BuyerController {
 		
 		// DB에서 입력한 문자열 검색
 		SellerVO vo = sellerService.read(s_id);
-		logger.info("vo : " + vo.getS_id());
 		
 		// DB에 있다면 중복...
 		if (vo!=null){

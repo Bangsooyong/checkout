@@ -5,7 +5,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
   <mapper namespace="com.shop.app.SellerMapper">
-      
+
       <insert id = "seller-insert">
          insert into s_tbl_seller(s_id, s_pw, s_name, s_gender, s_birth, s_phone, s_email, s_zip, s_addr1, s_addr2)
          values(#{s_id}, #{s_pw}, #{s_name}, #{s_gender}, #{s_birth}, #{s_phone}, #{s_email}, #{s_zip}, #{s_addr1}, #{s_addr2}) 

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- SQL 문장들을 작성하는 XML 파일 -->
+<mapper namespace="com.shop.app.CartMapper">
+
+	<!-- 주문번호를 제외한 장바구니 테이블에 인서트, 주문번호는 주문 버튼 클릭하면 넣기 -->
+	<insert id="cart-insert">
+		  insert into s_tbl_cart(c_no, b_id, p_no, p_name, p_price, buy_cnt, o_cont)
+         values(#{c_no}, #{b_id}, #{p_name}, #{p_price}, #{buy_cnt}, #{o_cont})
+	</insert>
+
+	<delete id="cart-delete">
+		delete from s_tbl_cart where c_id = #{c_id} 
+	</delete>
+</mapper>

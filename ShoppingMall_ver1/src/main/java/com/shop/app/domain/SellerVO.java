@@ -23,12 +23,13 @@ public class SellerVO {
 	private String s_logo; // 판매자 로고
 	private String s_info; // 판매자 정보
 	
+	public SellerVO(){}
+	
 	
 	// 생성자 (가입여부 제외)
 	public SellerVO(int s_no, String s_id, String s_pw, String s_name, int s_gender, String s_birth, int s_phone,
 			String s_email, String s_zip, String s_addr1, String s_addr2, Date s_reg, String s_logo,
 			String s_info) {
-		super();
 		this.s_no = s_no;
 		this.s_id = s_id;
 		this.s_pw = s_pw;

@@ -13,7 +13,7 @@
          values(#{b_id}, #{b_pw}, #{b_name}, #{b_gender}, #{b_birth}, #{b_phone}, #{b_email}, #{b_zip}, #{b_addr1}, #{b_addr2}) 
      </insert>
      
-           <!-- userid로 검색하는 SQL문 -->
+    <!-- 검색하는 SQL문 -->
     <select id="select-by-b_id"
         resultType="com.shop.app.domain.BuyerVO">
     select * from s_tbl_buyer where b_id = #{b_id}
@@ -23,9 +23,5 @@
     <select id="buyer-login" resultType="Integer">
     select count(1) from s_tbl_buyer where b_id = #{b_id} and b_pw = #{b_pw}
     </select>
- 
- 
- 
- 
- 
+
  </mapper>
