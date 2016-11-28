@@ -41,7 +41,7 @@ public class BuyerController {
 	/* ----------------------------------------------------------------------------------------------------- */
 	
 	// ### 회원가입 메인
-	@RequestMapping(value="/main", method=RequestMethod.GET)
+	@RequestMapping(value="/register", method=RequestMethod.GET)
 	public String mainRegister(Model model){
 		
 		logger.info("register_buyer 실행");
