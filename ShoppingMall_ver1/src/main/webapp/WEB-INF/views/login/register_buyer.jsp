@@ -38,10 +38,27 @@
 	rel="stylesheet" />
 	 --%>
 <script>
-	function checkPass() {
-		var pass1 = document.getElementById('pass1');
-		var pass2 = document.getElementById('pass2');
-		var message = document.getElementById('confirmMessage');
+	/* 구매자 비밀번호 확인 */
+	function b_checkPass() {
+		var pass1 = document.getElementById('b_pass1');
+		var pass2 = document.getElementById('b_pass2');
+		var message = document.getElementById('b_confirmMessage');
+		var goodColor = "#66cc66";
+		var badColor = "#ff6666";
+		if (pass1.value == pass2.value) {
+			message.style.color = goodColor;
+			message.innerHTML = "일치합니다"
+		} else {
+			message.style.color = badColor;
+			message.innerHTML = "패스워드가 일치하지 않습니다.!"
+		}
+	}
+
+	/* 판매자 비밀번호 확인 */
+	function s_checkPass() {
+		var pass1 = document.getElementById('s_pass1');
+		var pass2 = document.getElementById('s_pass2');
+		var message = document.getElementById('s_confirmMessage');
 		var goodColor = "#66cc66";
 		var badColor = "#ff6666";
 		if (pass1.value == pass2.value) {
@@ -200,7 +217,7 @@
 	var code; // 코드를 저장할 변수 지정	
 	$(document).ready(function() {
 		$('#b_showConfirmForm').click(function() {
-			var email = $("#email").val();
+			var email = $("#b_email2").val();
 			var regex = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;
 			if (regex.test(email) === false) {
 				alert("잘못된 이메일 형식입니다.");
@@ -210,12 +227,12 @@
 				$.ajax({
 					type : 'post',
 					url : 'checkemail',
-					data : $("#email").val(),
+					data : $("#b_email2").val(),
 					success : function(result) {
 						alert('인증번호가 전송되었습니다.');
 						// $('#b_duplicationCheckResult2').html("전송 완료.");
 						// $('#b_duplicationCheckResult2').css('color','green');
-						$('#email').css('color','green');
+						$('#b_email2').css('color','green');
 						code = result;
 					}
 				});
@@ -226,7 +243,7 @@
 	var code; // 코드를 저장할 변수 지정	
 	$(document).ready(function() {
 		$('#s_showConfirmForm').click(function() {
-			var email = $("#email").val();
+			var email = $("#s_email2").val();
 			var regex = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;
 			if (regex.test(email) === false) {
 				alert("잘못된 이메일 형식입니다.");
@@ -236,12 +253,12 @@
 				$.ajax({
 					type : 'post',
 					url : 'checkemail',
-					data : $("#email").val(),
+					data : $("#s_email2").val(),
 					success : function(result) {
 						alert('인증번호가 전송되었습니다.');
 						// $('#b_duplicationCheckResult2').html("전송 완료.");
 						// $('#b_duplicationCheckResult2').css('color','green');
-						$('#email').css('color','green');
+						$('#s_email2').css('color','green');
 						code = result;
 					}
 				});
@@ -449,7 +466,7 @@ input.radio {
 											 	<label for="b_pw">비밀번호 </label> 
 											 	<div class="controls">
 												 	<input required name="b_pw" type="password" class="input-xlarge"
-														minlength="4" maxlength="16" id="pass1" placeholder="비밀번호" />
+														minlength="4" maxlength="16" id="b_pass1" placeholder="비밀번호" />
 												</div>
 											 </div><!-- ### 완료 ###-->
 											 
@@ -464,13 +481,13 @@ input.radio {
 											 -->
 											 <div class="control-group">
 												<label for="b_pw_check">비밀번호 확인 &nbsp;&nbsp;
-													<span id="confirmMessage"></span> 
+													<span id="b_confirmMessage"></span> 
 												</label> 
 												<div class="controls">
 													<input required name="b_pw_check"
 														type="password" class="input-xlarge" minlength="4"
-														maxlength="16" placeholder="비밀번호 확인(위와 동일하게 입력하세요)" id="pass2"
-														onkeyup="checkPass(); return false;" /> 
+														maxlength="16" placeholder="비밀번호 확인(위와 동일하게 입력하세요)" id="b_pass2"
+														onkeyup="b_checkPass(); return false;" /> 
 												</div>
 											 </div><!-- ### 완료 ###-->
 
@@ -582,7 +599,7 @@ input.radio {
 											 	 	유효한 이메일임을 확인하기 위해서 확인메일을 보냅니다.</small> -->
 												</label>
 												<div class="controls" id="b_email">
-													<input type="email" id='email' name="b_email" class="input-xlarge"
+													<input type="email" id='b_email2' name="b_email" class="input-xlarge"
 														placeholder="이메일주소 입력 ">
 														
 												    <span class="input-group-btn" id="b_check">
@@ -618,7 +635,7 @@ input.radio {
 														<!-- <small id="check_code">hide</small>  --><!-- ### TEST ### 빠른 인증번호 확인을 위한 코드 -->
 												</label>
 												<div class="controls" id="b_email_input-group">
-													<input type="text" name="b_email_input" id = "b_email_input"class="input-xlarge"
+													<input required type="text" name="b_email_input" id = "b_email_input"class="input-xlarge"
 														placeholder="승인번호 ex)1234 "> <span
 														class="input-group-btn" id="b_email_span">
 														<button type="button" name="b_email_btn" id="b_email_confirm_btn">확인</button>
@@ -647,12 +664,12 @@ input.radio {
 												<div class="controls">
 													<input class="input-xlarge" type="text" name="b_zip"
 														id="b_postcode" placeholder="우편번호를 찾으려면 클릭하세요"
-														onclick="sample6_execDaumPostcode()"> <br>
+														onclick="b_execDaumPostcode()"> <br>
 													<input class="input-xlarge" type="text" name="b_addr1"
-														id="p_address" placeholder="지번 / 도로명주소"
+														id="b_address" placeholder="지번 / 도로명주소"
 														readonly="readonly"><br> 
 													<input class="input-xlarge" type="text" name="b_addr2"
-														id="p_address2" placeholder="나머지 상세 주소">
+														id="b_address2" placeholder="나머지 상세 주소">
 												</div>
 											</div>
 											<!-- -------------------------------------------------------------- -->
@@ -753,7 +770,7 @@ input.radio {
 											 	<label for="s_pw">비밀번호 </label> 
 											 	<div class="controls">
 												 	<input required name="s_pw" type="password" class="input-xlarge"
-														minlength="4" maxlength="16" id="pass1" placeholder="비밀번호" />
+														minlength="4" maxlength="16" id="s_pass1" placeholder="비밀번호" />
 												</div>
 											 </div><!-- ### 완료 ###-->
 											 
@@ -761,13 +778,13 @@ input.radio {
 											
 											 <div class="control-group">
 												<label for="s_pw_check">비밀번호 확인 &nbsp;&nbsp;
-													<span id="confirmMessage"></span> 
+													<span id="s_confirmMessage"></span> 
 												</label> 
 												<div class="controls">
 													<input required name="s_pw_check"
 														type="password" class="input-xlarge" minlength="4"
-														maxlength="16" placeholder="비밀번호 확인(위와 동일하게 입력하세요)" id="pass2"
-														onkeyup="checkPass(); return false;" /> 
+														maxlength="16" placeholder="비밀번호 확인(위와 동일하게 입력하세요)" id="s_pass2"
+														onkeyup="s_checkPass(); return false;" /> 
 												</div>
 											 </div><!-- ### 완료 ###-->
 
@@ -815,7 +832,7 @@ input.radio {
 											 	 	유효한 이메일임을 확인하기 위해서 확인메일을 보냅니다.</small> -->
 												</label>
 												<div class="controls" id="s_email">
-													<input type="email" id='email' name="s_email" class="input-xlarge"
+													<input required type="email" id='s_email2' name="s_email" class="input-xlarge"
 														placeholder="이메일주소 입력 ">
 												    <span class="input-group-btn" id="s_check">
 														<button type="button" id="s_showConfirmForm">승인번호 얻기</button>

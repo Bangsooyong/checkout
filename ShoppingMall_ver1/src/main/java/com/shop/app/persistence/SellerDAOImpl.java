@@ -28,7 +28,7 @@ public class SellerDAOImpl implements SellerDAO {
 	// 회원가입 ID 중복검사 AJAX에 쓰임
 	@Override
 	public SellerVO select(String s_id) {
-		SellerVO vo = sqlSesson.selectOne(NAMESPACE + "select-by-s_id", s_id);
+		SellerVO vo = sqlSesson.selectOne(NAMESPACE + ".select-by-s_id", s_id);
 		return vo;
 	}
 	/* ----------------------------------------------------------------------------------------------------- */
