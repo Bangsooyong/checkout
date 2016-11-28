@@ -145,7 +145,7 @@ public class BuyerController {
 
 	// 구매자 가입완료 버튼 클릭
 	@RequestMapping(value="/b_register_result", method=RequestMethod.POST)
-	public String b_register_result(BuyerVO vo){
+	public String b_register_result(BuyerVO vo){ // default 객체로 생성하고 name 정보들을  set 한다.
 		// login1 폼에서 입력받은 값을 vo 에 넣어서 insert합니다.
 		// 아이디가 PK라서 같은 아이디 두번넣으면 에러남.
 		buyerService.insert(vo);
@@ -160,6 +160,7 @@ public class BuyerController {
 	public String s_register_result(SellerVO vo){
 		// login1 폼에서 입력받은 값을 vo 에 넣어서 insert합니다.
 		// 아이디가 PK라서 같은 아이디 두번넣으면 에러남.
+		logger.info("판매자 회원가입 버튼 호출 ");
 		sellerService.insert(vo);
 		logger.info("판매자 회원가입 성공! ");
 		return "login_result"; // TODO: 성공시 메인화면으로 보내야 함.

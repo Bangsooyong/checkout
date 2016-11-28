@@ -24,12 +24,14 @@ public class SellerVO {
 	private String s_info; // 판매자 정보
 	
 	
-	// 생성자 (가입여부 제외)
-	public SellerVO(int s_no, String s_id, String s_pw, String s_name, int s_gender, String s_birth, int s_phone,
-			String s_email, String s_zip, String s_addr1, String s_addr2, Date s_reg, String s_logo,
-			String s_info) {
+	
+	public SellerVO() {}
+
+
+	// 생성자 (가입여부), 로고, 정보 제외
+	public SellerVO(String s_id, String s_pw, String s_name, int s_gender, String s_birth, int s_phone,
+			String s_email, String s_zip, String s_addr1, String s_addr2) {
 		super();
-		this.s_no = s_no;
 		this.s_id = s_id;
 		this.s_pw = s_pw;
 		this.s_name = s_name;
@@ -40,9 +42,6 @@ public class SellerVO {
 		this.s_zip = s_zip;
 		this.s_addr1 = s_addr1;
 		this.s_addr2 = s_addr2;
-		this.s_reg = s_reg;
-		this.s_logo = s_logo;
-		this.s_info = s_info;
 	}
 
 	

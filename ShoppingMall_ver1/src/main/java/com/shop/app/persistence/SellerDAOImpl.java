@@ -21,7 +21,7 @@ public class SellerDAOImpl implements SellerDAO {
 	// 회원가입 등록
 	@Override
 	public int insert(SellerVO vo) {
-		int result = sqlSesson.insert(NAMESPACE + ".seller_insert", vo);
+		int result = sqlSesson.insert(NAMESPACE + ".seller-insert", vo);
 		return result;
 	}
 	/* ----------------------------------------------------------------------------------------------------- */
