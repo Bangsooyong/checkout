@@ -92,7 +92,7 @@ public class BuyerController {
 		
 		// DB에서 입력한 문자열 검색
 		SellerVO vo = sellerService.read(s_id);
-		
+
 		// DB에 있다면 중복...
 		if (vo!=null){
 			String selectedID = vo.getS_id();
