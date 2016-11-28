@@ -9,9 +9,9 @@
 <title>Insert title here</title>
 
 <style>
-img{
-width: 400px;
-height: 400px;
+.preview {
+width: 100px;
+height: 100px;
 }
 
 </style>

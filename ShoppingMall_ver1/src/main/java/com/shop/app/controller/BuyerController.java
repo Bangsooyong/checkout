@@ -157,6 +157,7 @@ public class BuyerController {
 	// 판매자 가입완료 버튼 클릭
 	@RequestMapping(value="/s_register_result", method=RequestMethod.POST)
 	public String s_register_result(SellerVO vo){
+		logger.info("s_register_result 실행");
 		// login1 폼에서 입력받은 값을 vo 에 넣어서 insert합니다.
 		// 아이디가 PK라서 같은 아이디 두번넣으면 에러남.
 		sellerService.insert(vo);

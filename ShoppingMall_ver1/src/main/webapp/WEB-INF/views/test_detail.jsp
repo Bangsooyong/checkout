@@ -1,10 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+    <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+
 
 <style>
 .preview {
@@ -12,10 +18,9 @@ width:300px;
 height:230px;
 }
 
-
 .thumb {
-width:90px;
-height:80px;
+width:90.7px;
+height:81px;
 margin-right:3px;}
 
 .normal {
@@ -29,10 +34,12 @@ border:3px solid #ff0000;}
 </head>
 <body>
 
-<img id="0" class="preview normal" src="http://i.imgur.com/wB73OvB.jpg" alt="preview" /><br />
-<img id="1" class="thumb normal" src="http://i.imgur.com/vblRxAI.jpg" alt="mountains" onmouseover="preview(this)"/>
-<img id="2" class="thumb normal" src="http://i.imgur.com/IxpW9YU.jpg" alt="desert" onmouseover="preview(this)"/>
-<img id="3" class="thumb normal" src="http://i.imgur.com/u1kXpzS.jpg" alt="highway" onmouseover="preview(this)"/>
+<img id="0" class="preview normal" src="http://i.imgur.com/wB73OvB.jpg" alt="preview" onclick="showPopup"><br />
+<img id="1" class="thumb normal" src="http://i.imgur.com/vblRxAI.jpg" onmouseover="preview(this)" />
+<img id="2" class="thumb normal" src="http://i.imgur.com/IxpW9YU.jpg" onmouseover="preview(this)"/>
+<img id="3" class="thumb normal" src="http://i.imgur.com/u1kXpzS.jpg" onmouseover="preview(this)"/>
+
+<div class=""></div>
 
 	<!-- productDetail -->
 	<form action="insertCart" method="get">
@@ -56,7 +63,7 @@ border:3px solid #ff0000;}
 	
 
 <script>
-
+	
     var lastImg = 1; //Set initial thumbnail and preview
     document.getElementById(0).src = document.getElementById(lastImg).src;
     document.getElementById(lastImg).className = "thumb selected";
@@ -67,6 +74,7 @@ border:3px solid #ff0000;}
         document.getElementById(0).src = img.src;
         lastImg = img.id
     }
+    
 </script>
 	
 </body>
