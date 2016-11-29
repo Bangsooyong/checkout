@@ -32,13 +32,17 @@
         <input type="text" class="i_set" id="i_img" name="i_img" placeholder="각 이미지의 URL을 넣어주세요..."/><br/>
     </div>
 
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script><!-- 추가  -->
     <script type="text/javascript" src="<c:url value='/resources/build/imgur.min.js'/>"></script><!-- *** 수정 *** -->
     <script type="text/javascript">
-        var feedback = function (res) {
+    $(document).ready(function() {
+    	var feedback = function (res) {
             if (res.success === true) {
                 document.querySelector('.status').classList.add('bg-success');
                 document.querySelector('.status').innerHTML = 'Image url: ' + res.data.link;
-
+		
+                console.log(res.data.link); // F12 로그
+                $('#i_img').val(res.data.link);
                /*  var result = $('.bg-success').clone();
             	alert( result.text() );   */ 
             }
@@ -49,10 +53,13 @@
             callback: feedback // TODO: 사진을 업로드하면 사진은 imgur서버상에 존재... 그러나 웹 사이트 계정에선 확인 불가...
         });
 
+    });
+        
         
     </script>
     
-	 <script>      
+    
+	 <script>      /* 오류...  */
   	$(document).ready(function() {
   		function readUrl() {
   			// var result = $('.status bg-success').clone();
