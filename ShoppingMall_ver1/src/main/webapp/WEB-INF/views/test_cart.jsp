@@ -32,6 +32,7 @@ tr td {
 			<th>구매수량</th>
 			<th>총주문금액</th>
 		</tr>
+		<c:set var = "sum" value = "0" />
 		<c:forEach var="vo" items="${cartList}">
 
 			<tr>
@@ -47,20 +48,28 @@ tr td {
 						<input type="hidden" value="${vo.c_no}" name="c_no">
 						<span><input type="submit" value="수정"></span>
 					</form></td>
+					
 				<td>${vo.p_price * vo.buy_cnt }<input type="hidden" value=${vo.p_price * vo.buy_cnt } class="CartTotal"></td>
 			</tr>
+			<c:set var= "sum" value="${sum + vo.p_price * vo.buy_cnt}"/>
 			<!--http://idevsigner.tistory.com/6  -->
 		</c:forEach>
 	</table>
 
 	<div>
-		총 구매 가격 : <span><input type="number" class="CartTotal"></span>
+		총 구매 가격 : <span><c:out value="${sum}"/></span>
 	</div>
 	<input type="button" value="장바구니에서 삭제" class="deleteall">
 
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	<script>
+/* 	 var a = $('input[name="RowCheck"]:checked');
+	a.change(function(){
+		$("#finalPrice").val();
+	}) */
+	
+	/////////////////////////////////////////////////////////
 		// 체크박스 올체크
 		function allChk(obj) {
 			var chkObj = document.getElementsByName("RowCheck");
@@ -113,9 +122,9 @@ tr td {
 																				success : function(
 																						result) {
 																					if (result == 1) {
-																						alert('장바구니 삭제 성공');
+																						
 																					} else {
-																						alert('실패');
+																						
 																					}
 																				}
 																			});
@@ -131,10 +140,7 @@ tr td {
 						});
 		
 		// 주문 및 총 계산 이벤트
-			var sum = 0;
-			$(".CartTotal").each(function(){
-			sum += this.value
-		});
+			
 	
 	</script>
 

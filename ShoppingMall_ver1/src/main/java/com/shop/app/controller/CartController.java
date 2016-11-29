@@ -40,9 +40,15 @@ public class CartController {
 		// TODO: 로그인 세션으로 b_id 줘야함.. 임시로 aaaa해놈
 		String b_id="aaaa";
 		List<CartVO> list = cartService.read(b_id);
-		list.get(0).getBuy_cnt();
-		model.addAttribute("cartList", list);
-		return "test_cart";
+		if (list.size()!=0){
+			list.get(0).getBuy_cnt();
+			model.addAttribute("cartList", list);
+			return "test_cart";	
+		} else {
+			logger.info("장바구니빔... 예외처리 추가 필요함");
+			return "";
+		}
+		
 	}
 	
 	@RequestMapping(value="deleteCart", method=RequestMethod.POST)
