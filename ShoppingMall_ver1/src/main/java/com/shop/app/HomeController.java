@@ -35,8 +35,8 @@ public class HomeController {
 		
 
 		//return "/UI/register";
-		//return "imgur";
-		return "/UI/index";
+		return "imgur";
+		//return "/UI/index";
 	}
 	
 }
