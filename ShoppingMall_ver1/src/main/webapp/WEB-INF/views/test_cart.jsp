@@ -158,7 +158,7 @@ tr td {
 																						'input[name="RowCheck"]:checked').val(),
 																				success : function(result) {
 																					if (result == 1) {
-
+																						$("#price").val(0)
 																					} else {
 
 																					}
