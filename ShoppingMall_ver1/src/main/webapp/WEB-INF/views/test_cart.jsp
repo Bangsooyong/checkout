@@ -32,7 +32,6 @@ tr td {
 			<th>구매수량</th>
 			<th>총주문금액</th>
 		</tr>
-		<c:set var = "sum" value = "0" />
 		<c:forEach var="vo" items="${cartList}">
 
 			<tr>
@@ -48,17 +47,15 @@ tr td {
 						<input type="hidden" value="${vo.c_no}" name="c_no">
 						<span><input type="submit" value="수정"></span>
 					</form></td> 
-					
 				<td class="realFinalCartPrice">${vo.p_price * vo.buy_cnt }</td> <!-- 아이템당 가격 -->
 			</tr>
-			<c:set var= "sum" value="${sum + vo.p_price * vo.buy_cnt}"/>
 			<!--http://idevsigner.tistory.com/6  -->
 		</c:forEach>
 	</table>
 
 	<div>
-		총 구매 가격 : <span><c:out value="${sum}"/></span> <!-- 총 가격 -->
-		<input id="price" value="0">
+		총 구매 가격 :  <!-- 총 가격 -->
+		<input id="price" value="0" readonly="readonly">
 	</div>
 	<input type="button" value="장바구니에서 삭제" class="deleteall">
 
