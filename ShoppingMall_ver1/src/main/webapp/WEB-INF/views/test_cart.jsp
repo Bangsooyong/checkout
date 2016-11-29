@@ -82,17 +82,9 @@ tr td {
  					} 
  			$("#price").val(finalCartPrice);
 	}
-	
-	
-	
-	
-	
-	
-	
-	
+
 	var $inputs = $('input[type="checkbox"]')
     
-   /*  $inputs.on('change', function () { */
 	   $inputs.change(function () {
     	 finalCartPrice = 0;
 		var chkObj = document.getElementsByName("RowCheck");
@@ -114,9 +106,7 @@ tr td {
 			}
 
     });
-    
-    
-	
+
 	/////////////////////////////////////////////////////////
 		// 체크박스 올체크
 		function allChk(obj) {
