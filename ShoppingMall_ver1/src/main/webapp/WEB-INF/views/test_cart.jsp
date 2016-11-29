@@ -22,7 +22,7 @@ tr td {
 
 	<table>
 		<tr>
-			<th><input type="checkbox" class="checkall"
+			<th><input type="checkbox" id="checkall"
 				onclick="allChk(this);" checked="checked"></th>
 			<th>상품이미지</th>
 			<!-- <th>상품번호</th> -->
@@ -92,7 +92,8 @@ tr td {
 	
 	var $inputs = $('input[type="checkbox"]')
     
-    $inputs.on('change', function () {
+   /*  $inputs.on('change', function () { */
+	   $inputs.change(function () {
     	 finalCartPrice = 0;
 		var chkObj = document.getElementsByName("RowCheck");
 	
@@ -105,6 +106,7 @@ tr td {
 						$("#price").val(finalCartPrice)
 					} else{
 						totalval+=1;
+						$("#checkall").prop('checked', false);
 					}
 				}
 			if(totalval == rowCnt ){
