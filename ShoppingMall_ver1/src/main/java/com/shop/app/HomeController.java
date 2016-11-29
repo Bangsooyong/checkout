@@ -35,7 +35,7 @@ public class HomeController {
 		
 
 		//return "/UI/register";
-		return "imgur";
+		return "sudo_cart2";
 		//return "/UI/index";
 	}
 	
