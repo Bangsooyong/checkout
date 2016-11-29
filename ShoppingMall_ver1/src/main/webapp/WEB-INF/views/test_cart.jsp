@@ -23,7 +23,7 @@ tr td {
 	<table>
 		<tr>
 			<th><input type="checkbox" class="checkall"
-				onclick="allChk(this);"></th>
+				onclick="allChk(this);" checked="checked"></th>
 			<th>상품이미지</th>
 			<!-- <th>상품번호</th> -->
 			<th>상품이름</th>
@@ -37,19 +37,19 @@ tr td {
 
 			<tr>
 				<td><input type="checkbox" value="${vo.c_no}" name="RowCheck"
-					class="checkbox"></td>
+					class="checkbox" checked="checked"></td>
 				<td><img src="http://i.imgur.com/wB73OvB.jpg"
 					style="width: 50px" /></td>
-				<td>${vo.p_name }</td>
-				<td>${vo.o_cont }</td>
-				<td>${vo.p_price }</td>
-				<td><form action="updateCartBuyCnt" method="get">
+				<td>${vo.p_name }</td> <!-- 이름 -->
+				<td>${vo.o_cont }</td> <!-- 옵션내용 -->
+				<td>${vo.p_price }</td> <!--  가격 -->
+				<td><form action="updateCartBuyCnt" method="get"> <!-- 수량 -->
 						<input style="width: 20px;" value="${vo.buy_cnt }" name="buy_cnt">
 						<input type="hidden" value="${vo.c_no}" name="c_no">
 						<span><input type="submit" value="수정"></span>
-					</form></td>
+					</form></td> 
 					
-				<td>${vo.p_price * vo.buy_cnt }<input type="hidden" value=${vo.p_price * vo.buy_cnt } class="CartTotal"></td>
+				<td class="realFinalCartPrice">${vo.p_price * vo.buy_cnt }</td> <!-- 아이템당 가격 -->
 			</tr>
 			<c:set var= "sum" value="${sum + vo.p_price * vo.buy_cnt}"/>
 			<!--http://idevsigner.tistory.com/6  -->
@@ -57,17 +57,61 @@ tr td {
 	</table>
 
 	<div>
-		총 구매 가격 : <span><c:out value="${sum}"/></span>
+		총 구매 가격 : <span><c:out value="${sum}"/></span> <!-- 총 가격 -->
+		<input id="price" value="0">
 	</div>
 	<input type="button" value="장바구니에서 삭제" class="deleteall">
 
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+		
+		
+		
+		
 	<script>
-/* 	 var a = $('input[name="RowCheck"]:checked');
-	a.change(function(){
-		$("#finalPrice").val();
-	}) */
+	var finalCartPrice = 0; // 최종가격 변수
+	price();
+    function price() {
+    	finalCartPrice = 0;
+ 		var chkObj = document.getElementsByName("RowCheck");
+
+ 		var rowCnt = chkObj.length - 1;
+ 			for (var i = 0; i <= rowCnt; i++) {
+ 					
+ 		
+ 						var text1 =chkObj[i].parentNode.parentNode.children[6].innerText * 1;// String 에서 숫자로 변환
+ 						finalCartPrice += text1;
+ 						
+ 					} 
+ 			$("#price").val(finalCartPrice);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	var $inputs = $('input[type="checkbox"]')
+    
+    $inputs.on('change', function () {
+    	 finalCartPrice = 0;
+		var chkObj = document.getElementsByName("RowCheck");
+
+		var rowCnt = chkObj.length - 1;
+			for (var i = 0; i <= rowCnt; i++) {
+					if (chkObj[i].checked == true){
+		
+						var text1 =chkObj[i].parentNode.parentNode.children[6].innerText * 1;// String 에서 숫자로 변환
+						finalCartPrice += text1;
+						$("#price").val(finalCartPrice)
+					} 
+				}
+
+    });
+    
+    
 	
 	/////////////////////////////////////////////////////////
 		// 체크박스 올체크
@@ -84,6 +128,7 @@ tr td {
 				for (var i = 0; i <= rowCnt; i++) {
 					if (chkObj[i].type == "checkbox") {
 						chkObj[i].checked = false;
+						$("#price").val(0)
 					}
 				}
 			}
