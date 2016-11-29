@@ -42,12 +42,17 @@ border:3px solid #ff0000;}
 <div class=""></div>
 
 	<!-- productDetail -->
-	<form action="insertCart" method="get">
+	<form action="/shop01/cart/insertCart" method="get">
 		<div><input type="hidden" value="${productDetail.p_no }" name="p_no"></div>
+		<!-- TODO: 세션으로 b_id 넣어줘야함.. -->
+		<div><input type="hidden" value="aaaa" name="b_id"></div> 
 		<div>
 			<span>상품명 : </span>${productDetail.p_name }</div>
+			<!-- TODO: product 테이블에서 select 해야함 밑에도  -->
+			<input type="hidden" value="${productDetail.p_name }" name="p_name">
 		<div>
 			<span>가격 : </span>${productDetail.p_price }</div>
+			<input type="hidden" value="${productDetail.p_price }" name="p_price">
 		<div>
 			<span>구매 수량 : </span><input type="number" name="buy_cnt">
 		</div>
@@ -57,7 +62,8 @@ border:3px solid #ff0000;}
   		<option>빨간색</option>
   		<option>초록색</option>
  		 <option>노란색</option>
-		</select></div>
+		</select>
+		</div>
 		<input type="submit" value="장바구니 담기">
 	</form>
 	

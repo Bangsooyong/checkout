@@ -267,13 +267,17 @@
 		});
 	});
 
-
+	
+	var autcheck1 = false;
+	var autcheck2 = false;
+	
 	// 인증번호 입력 확인시. code변수에 저장된 인증번호와 user가 쓴 인증번호 비교.
 	// 구매자
 	$(document).ready(function() {
 		$('#b_email_confirm_btn').click(function() {
 			if ($('#b_email_input').val() == code) {
 				alert('인증되었습니다');
+				autcheck1 = true;
 			} else {
 				alert('다시 입력하여 주십시오..');
 			}
@@ -284,11 +288,39 @@
 		$('#s_email_confirm_btn').click(function() {
 			if ($('#s_email_input').val() == code) {
 				alert('인증되었습니다');
+				 autcheck2 = true;
 			} else {
 				alert('다시 입력하여 주십시오..');
 			}
 		});
 	});
+	
+	
+	
+	/* 인증번호를 제대로 입력하지 않고 가입버튼 누를시.. */
+	$(document).ready(function() {
+		$('#fileForm1').submit(function() {
+			if (autcheck1 != true) {
+				alert('이메일 인증을 다시 확인해 주십시오...')
+				return false;
+			} else {
+				return true;
+			}
+		});
+	});
+	
+	$(document).ready(function() {
+		$('#fileForm2').submit(function() {
+			if (autcheck2 != true) {
+				alert('이메일 인증을 다시 확인해 주십시오...')
+				return false;
+			} else {
+				return true;
+			}
+		});
+	});
+	
+	
 </script>
 
 
@@ -410,7 +442,7 @@ input.radio {
 								<div class="accordion-inner">
 									<div class="row-fluid">
 									<h4 class="title"><span class="text"><strong>Register</strong> Form</span></h4>
-									<form action="b_register_result" method="post" id="fileForm" role="form">
+									<form action="b_register_result" method="post" id="fileForm1" role="form"><!-- ** submit-->
 										<!-- ######################################## -->
 										<!-- 왼쪽 -->
 										<div class="span6">
@@ -490,7 +522,7 @@ input.radio {
 														type="password" class="input-xlarge" minlength="4"
 														maxlength="16" placeholder="비밀번호 확인(위와 동일하게 입력하세요)" id="b_pass2"
 														onkeyup="b_checkPass(); return false;" /> 
-												</div>
+												</div> <!-- TODO :  -->
 											 </div><!-- ### 완료 ###-->
 
 											
@@ -666,12 +698,12 @@ input.radio {
 												<div class="controls">
 													<input class="input-xlarge" type="text" name="b_zip"
 														id="b_postcode" placeholder="우편번호를 찾으려면 클릭하세요"
-														onclick="b_execDaumPostcode()"> <br>
+														onclick="b_execDaumPostcode()" required> <br>
 													<input class="input-xlarge" type="text" name="b_addr1"
 														id="b_address" placeholder="지번 / 도로명주소"
-														readonly="readonly"><br> 
+														readonly="readonly" required><br> 
 													<input class="input-xlarge" type="text" name="b_addr2"
-														id="b_address2" placeholder="나머지 상세 주소">
+														id="b_address2" placeholder="나머지 상세 주소" required>
 												</div>
 											</div>
 											<!-- -------------------------------------------------------------- -->
@@ -739,7 +771,7 @@ input.radio {
 								<div class="accordion-inner">
 									<div class="row-fluid">
 									<h4 class="title"><span class="text"><strong>Register</strong> Form</span></h4>
-									<form action="s_register_result" method="post" id="fileForm" role="form">
+									<form action="s_register_result" method="post" id="fileForm2" role="form">
 										<!-- ######################################## -->
 										<!-- 왼쪽 -->
 										<div class="span6">
@@ -871,12 +903,12 @@ input.radio {
 												<div class="controls">
 													<input class="input-xlarge" type="text" name="s_zip"
 														id="s_postcode" placeholder="우편번호를 찾으려면 클릭하세요"
-														onclick="s_execDaumPostcode()"> <br>
+														onclick="s_execDaumPostcode()" required> <br>
 													<input class="input-xlarge" type="text" name="s_addr1"
 														id="s_address" placeholder="지번 / 도로명주소"
-														readonly="readonly"><br> 
+														readonly="readonly" required><br> 
 													<input class="input-xlarge" type="text" name="s_addr2"
-														id="s_address2" placeholder="나머지 상세 주소">
+														id="s_address2" placeholder="나머지 상세 주소" required>
 												</div>
 											</div>
 											<!-- -------------------------------------------------------------- -->

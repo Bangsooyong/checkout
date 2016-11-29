@@ -9,9 +9,13 @@
 
 	<!-- 주문번호를 제외한 장바구니 테이블에 인서트, 주문번호는 주문 버튼 클릭하면 넣기 -->
 	<insert id="cart-insert">
-		  insert into s_tbl_cart(c_no, b_id, p_no, p_name, p_price, buy_cnt, o_cont)
-         values(#{c_no}, #{b_id}, #{p_name}, #{p_price}, #{buy_cnt}, #{o_cont})
+		  insert into s_tbl_cart(b_id, p_no, p_name, p_price, buy_cnt, o_cont)
+         values(#{b_id}, #{p_no}, #{p_name}, #{p_price}, #{buy_cnt}, #{o_cont})
 	</insert>
+	
+	<select id="cart-select-by-b_id" resultType="com.shop.app.domain.CartVO">
+		select * from s_tbl_cart where b_id = #{b_id}
+	</select>
 
 	<delete id="cart-delete">
 		delete from s_tbl_cart where c_id = #{c_id} 

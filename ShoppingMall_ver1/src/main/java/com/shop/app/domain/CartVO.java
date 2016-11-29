@@ -10,6 +10,8 @@ public class CartVO {
 	String p_name; // 상품이름
 	String o_cont; // 옵션 콘텐츠
 	
+	public CartVO(){}
+	
 	public CartVO(int c_no, int p_no, int p_price, int buy_cnt, int buy_no, String b_id, String p_name, String o_cont) {
 		this.c_no = c_no;
 		this.p_no = p_no;

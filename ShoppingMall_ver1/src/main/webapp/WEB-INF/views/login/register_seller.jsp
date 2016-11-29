@@ -38,10 +38,27 @@
 	rel="stylesheet" />
 	 --%>
 <script>
-	function checkPass() {
-		var pass1 = document.getElementById('pass1');
-		var pass2 = document.getElementById('pass2');
-		var message = document.getElementById('confirmMessage');
+	/* 구매자 비밀번호 확인 */
+	function b_checkPass() {
+		var pass1 = document.getElementById('b_pass1');
+		var pass2 = document.getElementById('b_pass2');
+		var message = document.getElementById('b_confirmMessage');
+		var goodColor = "#66cc66";
+		var badColor = "#ff6666";
+		if (pass1.value == pass2.value) {
+			message.style.color = goodColor;
+			message.innerHTML = "일치합니다"
+		} else {
+			message.style.color = badColor;
+			message.innerHTML = "패스워드가 일치하지 않습니다.!"
+		}
+	}
+
+	/* 판매자 비밀번호 확인 */
+	function s_checkPass() {
+		var pass1 = document.getElementById('s_pass1');
+		var pass2 = document.getElementById('s_pass2');
+		var message = document.getElementById('s_confirmMessage');
 		var goodColor = "#66cc66";
 		var badColor = "#ff6666";
 		if (pass1.value == pass2.value) {
@@ -56,71 +73,136 @@
 </script>
 
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-<script>
-	function sample6_execDaumPostcode() {
-		new daum.Postcode(
-				{
-					oncomplete : function(data) {
-						// 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
-
-						// 각 주소의 노출 규칙에 따라 주소를 조합한다.
-						// 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-						var fullAddr = ''; // 최종 주소 변수
-						var extraAddr = ''; // 조합형 주소 변수
-
-						// 사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
-						if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
-							fullAddr = data.roadAddress;
-
-						} else { // 사용자가 지번 주소를 선택했을 경우(J)
-							fullAddr = data.jibunAddress;
-						}
-
-						// 사용자가 선택한 주소가 도로명 타입일때 조합한다.
-						if (data.userSelectedType === 'R') {
-							//법정동명이 있을 경우 추가한다.
-							if (data.bname !== '') {
-								extraAddr += data.bname;
-							}
-							// 건물명이 있을 경우 추가한다.
-							if (data.buildingName !== '') {
-								extraAddr += (extraAddr !== '' ? ', '
-										+ data.buildingName : data.buildingName);
-							}
-							// 조합형주소의 유무에 따라 양쪽에 괄호를 추가하여 최종 주소를 만든다.
-							fullAddr += (extraAddr !== '' ? ' (' + extraAddr
-									+ ')' : '');
-						}
-
-						// 우편번호와 주소 정보를 해당 필드에 넣는다.
-						document.getElementById('sample6_postcode').value = data.zonecode; //5자리 새우편번호 사용
-						document.getElementById('sample6_address').value = fullAddr;
-
-						// 커서를 상세주소 필드로 이동한다.
-						document.getElementById('sample6_address2').focus();
+<script> // daum api를 이용한 주소 검색
+	// 구매자
+	function b_execDaumPostcode() {
+		new daum.Postcode({ 
+			oncomplete : function(data) {
+					// 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+	
+					// 각 주소의 노출 규칙에 따라 주소를 조합한다.
+					// 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+					var fullAddr = ''; // 최종 주소 변수
+					var extraAddr = ''; // 조합형 주소 변수
+	
+					// 사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+					if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+						fullAddr = data.roadAddress;
+	
+					} else { // 사용자가 지번 주소를 선택했을 경우(J)
+						fullAddr = data.jibunAddress;
 					}
-				}).open();
+	
+					// 사용자가 선택한 주소가 도로명 타입일때 조합한다.
+					if (data.userSelectedType === 'R') {
+						//법정동명이 있을 경우 추가한다.
+						if (data.bname !== '') {
+							extraAddr += data.bname;
+						}
+						// 건물명이 있을 경우 추가한다.
+						if (data.buildingName !== '') {
+							extraAddr += (extraAddr !== '' ? ', '
+									+ data.buildingName : data.buildingName);
+						}
+						// 조합형주소의 유무에 따라 양쪽에 괄호를 추가하여 최종 주소를 만든다.
+						fullAddr += (extraAddr !== '' ? ' (' + extraAddr + ')' : '');
+					}
+	
+					// 우편번호와 주소 정보를 해당 필드에 넣는다.
+					document.getElementById('b_postcode').value = data.zonecode; //5자리 새우편번호 사용
+					document.getElementById('b_address').value = fullAddr;
+	
+					// 커서를 상세주소 필드로 이동한다.
+					document.getElementById('b_address2').focus();
+				}
+		}).open();
+	}
+	// 판매자
+		function s_execDaumPostcode() {
+		new daum.Postcode({ 
+			oncomplete : function(data) {
+					// 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+	
+					// 각 주소의 노출 규칙에 따라 주소를 조합한다.
+					// 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+					var fullAddr = ''; // 최종 주소 변수
+					var extraAddr = ''; // 조합형 주소 변수
+	
+					// 사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+					if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+						fullAddr = data.roadAddress;
+	
+					} else { // 사용자가 지번 주소를 선택했을 경우(J)
+						fullAddr = data.jibunAddress;
+					}
+	
+					// 사용자가 선택한 주소가 도로명 타입일때 조합한다.
+					if (data.userSelectedType === 'R') {
+						//법정동명이 있을 경우 추가한다.
+						if (data.bname !== '') {
+							extraAddr += data.bname;
+						}
+						// 건물명이 있을 경우 추가한다.
+						if (data.buildingName !== '') {
+							extraAddr += (extraAddr !== '' ? ', '
+									+ data.buildingName : data.buildingName);
+						}
+						// 조합형주소의 유무에 따라 양쪽에 괄호를 추가하여 최종 주소를 만든다.
+						fullAddr += (extraAddr !== '' ? ' (' + extraAddr + ')' : '');
+					}
+	
+					// 우편번호와 주소 정보를 해당 필드에 넣는다.
+					document.getElementById('s_postcode').value = data.zonecode; //5자리 새우편번호 사용
+					document.getElementById('s_address').value = fullAddr;
+	
+					// 커서를 상세주소 필드로 이동한다.
+					document.getElementById('s_address2').focus();
+				}
+		}).open();
 	}
 </script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-<script>
+
+<script>/* ### 아이디 중복 체크 ###  */
 	// 아이디 중복체크 Ajax , Controller RequestMapping : /checkid
 	$(document).ready(function() {
 		$("#b_id").change(function() {
 			$.ajax({
 				type : 'post',
-				url : 'checkid',
+				url : 'b_checkid',
 				data : $("#b_id").val(),
 				success : function(result) {
 					if (result == 1) {
-						$("#duplicationCheckResult").html("중복된 아이디입니다.");
-						$("#duplicationCheckResult").css("color", "red");
+						$("#b_duplicationCheckResult").html("중복된 아이디입니다.");
+						$("#b_duplicationCheckResult").css("color", "red");
 						$("#b_id").css("color", "red");
 					} else {
-						$("#duplicationCheckResult").html("사용 가능한 아이디입니다.");
-						$("#duplicationCheckResult").css("color", "green");
+						$("#b_duplicationCheckResult").html("사용 가능한 아이디입니다.");
+						$("#b_duplicationCheckResult").css("color", "green");
 						$("#b_id").css("color", "green");
+					}
+				}
+			});
+		});
+	});
+	
+	// 판매자
+	$(document).ready(function() {
+		$("#s_id").change(function() {
+			$.ajax({
+				type : 'post',
+				url : 's_checkid',
+				data : $("#s_id").val(),
+				success : function(result) {
+					if (result == 1) {
+						$("#s_duplicationCheckResult").html("중복된 아이디입니다.");
+						$("#s_duplicationCheckResult").css("color", "red");
+						$("#s_id").css("color", "red");
+					} else {
+						$("#s_duplicationCheckResult").html("사용 가능한 아이디입니다.");
+						$("#s_duplicationCheckResult").css("color", "green");
+						$("#s_id").css("color", "green");
 					}
 				}
 			});
@@ -131,63 +213,113 @@
 <script>
 	// ##### 이메일 인증을 위한 Query
 
+	// 구매자
 	var code; // 코드를 저장할 변수 지정	
-	$(document)
-			.ready(
-					function() {
-						$('#showConfirmForm')
-								.click(
-										function() {
-											var email = $("#email").val();
-											var regex = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;
-											if (regex.test(email) === false) {
-												alert("잘못된 이메일 형식입니다.");
-												return false;
-											} else {
-												alert('인증번호가 전송되는 동안 잠시만 기다려 주십시오...'); // TODO: Ajax로 이메일 보내는데 시간 문제가 있음...
-												$
-														.ajax({
-															type : 'post',
-															url : 'checkemail',
-															data : $("#email")
-																	.val(),
-															success : function(
-																	result) {
-																alert('인증번호가 전송되었습니다.');
-																//if(result==1) {
-																$(
-																		'#duplicationCheckResult2')
-																		.html(
-																				"전송 완료.");
-																// $('#duplicationCheckResult2').html(result);
-																$(
-																		'#duplicationCheckResult2')
-																		.css(
-																				'color',
-																				'green');
-																$('#email')
-																		.css(
-																				'color',
-																				'green');
-																//$('#check_code').html(result);
-																code = result;
-																// $('#check_code').html(code);
-															}
-														});
-											}
-										});
-					});
+	$(document).ready(function() {
+		$('#b_showConfirmForm').click(function() {
+			var email = $("#b_email2").val();
+			var regex = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;
+			if (regex.test(email) === false) {
+				alert("잘못된 이메일 형식입니다.");
+				return false;
+			} else {
+				alert('인증번호가 전송되는 동안 잠시만 기다려 주십시오...'); // TODO: Ajax로 이메일 보내는데 시간 문제가 있음...
+				$.ajax({
+					type : 'post',
+					url : 'checkemail',
+					data : $("#b_email2").val(),
+					success : function(result) {
+						alert('인증번호가 전송되었습니다.');
+						// $('#b_duplicationCheckResult2').html("전송 완료.");
+						// $('#b_duplicationCheckResult2').css('color','green');
+						$('#b_email2').css('color','green');
+						code = result;
+					}
+				});
+			}
+		});
+	});
+	// 판매자
+	var code; // 코드를 저장할 변수 지정	
+	$(document).ready(function() {
+		$('#s_showConfirmForm').click(function() {
+			var email = $("#s_email2").val();
+			var regex = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;
+			if (regex.test(email) === false) {
+				alert("잘못된 이메일 형식입니다.");
+				return false;
+			} else {
+				alert('인증번호가 전송되는 동안 잠시만 기다려 주십시오...'); // TODO: Ajax로 이메일 보내는데 시간 문제가 있음...
+				$.ajax({
+					type : 'post',
+					url : 'checkemail',
+					data : $("#s_email2").val(),
+					success : function(result) {
+						alert('인증번호가 전송되었습니다.');
+						// $('#b_duplicationCheckResult2').html("전송 완료.");
+						// $('#b_duplicationCheckResult2').css('color','green');
+						$('#s_email2').css('color','green');
+						code = result;
+					}
+				});
+			}
+		});
+	});
 
+	
+	var autcheck1 = false;
+	var autcheck2 = false;
+	
 	// 인증번호 입력 확인시. code변수에 저장된 인증번호와 user가 쓴 인증번호 비교.
+	// 구매자
 	$(document).ready(function() {
 		$('#b_email_confirm_btn').click(function() {
 			if ($('#b_email_input').val() == code) {
 				alert('인증되었습니다');
+				autcheck1 = true;
 			} else {
 				alert('다시 입력하여 주십시오..');
 			}
 		});
 	});
+	// 판매자
+	$(document).ready(function() {
+		$('#s_email_confirm_btn').click(function() {
+			if ($('#s_email_input').val() == code) {
+				alert('인증되었습니다');
+				 autcheck2 = true;
+			} else {
+				alert('다시 입력하여 주십시오..');
+			}
+		});
+	});
+	
+	
+	
+	/* 인증번호를 제대로 입력하지 않고 가입버튼 누를시.. */
+	$(document).ready(function() {
+		$('#fileForm1').submit(function() {
+			if (autcheck1 != true) {
+				alert('이메일 인증을 다시 확인해 주십시오...')
+				return false;
+			} else {
+				return true;
+			}
+		});
+	});
+	
+	$(document).ready(function() {
+		$('#fileForm2').submit(function() {
+			if (autcheck2 != true) {
+				alert('이메일 인증을 다시 확인해 주십시오...')
+				return false;
+			} else {
+				return true;
+			}
+		});
+	});
+	
+	
 </script>
 
 
@@ -309,7 +441,7 @@ input.radio {
 								<div class="accordion-inner">
 									<div class="row-fluid">
 									<h4 class="title"><span class="text"><strong>Register</strong> Form</span></h4>
-									<form action="register_result" method="post" id="fileForm" role="form">
+									<form action="b_register_result" method="post" id="fileForm1" role="form"><!-- ** submit-->
 										<!-- ######################################## -->
 										<!-- 왼쪽 -->
 										<div class="span6">
@@ -346,7 +478,7 @@ input.radio {
 												 -->
 											<div class="control-group">
 												<label for="b_id">아이디 &nbsp;&nbsp; 
-													<span id="duplicationCheckResult"></span> 
+													<span id="b_duplicationCheckResult"></span> 
 												</label> 
 												<div class="controls">
 													<input class="input-xlarge" type="text" name="b_id"
@@ -366,7 +498,7 @@ input.radio {
 											 	<label for="b_pw">비밀번호 </label> 
 											 	<div class="controls">
 												 	<input required name="b_pw" type="password" class="input-xlarge"
-														minlength="4" maxlength="16" id="pass1" placeholder="비밀번호" />
+														minlength="4" maxlength="16" id="b_pass1" placeholder="비밀번호" />
 												</div>
 											 </div><!-- ### 완료 ###-->
 											 
@@ -381,14 +513,14 @@ input.radio {
 											 -->
 											 <div class="control-group">
 												<label for="b_pw_check">비밀번호 확인 &nbsp;&nbsp;
-													<span id="confirmMessage"></span> 
+													<span id="b_confirmMessage"></span> 
 												</label> 
 												<div class="controls">
 													<input required name="b_pw_check"
 														type="password" class="input-xlarge" minlength="4"
-														maxlength="16" placeholder="비밀번호 확인(위와 동일하게 입력하세요)" id="pass2"
-														onkeyup="checkPass(); return false;" /> 
-												</div>
+														maxlength="16" placeholder="비밀번호 확인(위와 동일하게 입력하세요)" id="b_pass2"
+														onkeyup="b_checkPass(); return false;" /> 
+												</div> <!-- TODO :  -->
 											 </div><!-- ### 완료 ###-->
 
 											
@@ -495,15 +627,16 @@ input.radio {
 											 
 											 <div class="control-group">
 											 	<label for="b_email">이메일 주소 &nbsp;&nbsp; 
-											 	<!-- <small id="duplicationCheckResult2">
+											 	<!-- <small id="b_duplicationCheckResult2">
 											 	 	유효한 이메일임을 확인하기 위해서 확인메일을 보냅니다.</small> -->
 												</label>
 												<div class="controls" id="b_email">
-													<input type="email" id='email' name="b_email" class="input-xlarge"
+													<input type="email" id='b_email2' name="b_email" class="input-xlarge"
 														placeholder="이메일주소 입력 ">
 														
 												    <span class="input-group-btn" id="b_check">
-														<button type="button" name="btn_for_check" id="showConfirmForm">승인번호 얻기</button>
+														<!-- <button type="button" name="btn_for_check" id="showConfirmForm">승인번호 얻기</button> -->
+														<button type="button" id="b_showConfirmForm">승인번호 얻기</button>
 													</span> 
 												</div>
 											 </div>
@@ -534,7 +667,7 @@ input.radio {
 														<!-- <small id="check_code">hide</small>  --><!-- ### TEST ### 빠른 인증번호 확인을 위한 코드 -->
 												</label>
 												<div class="controls" id="b_email_input-group">
-													<input type="text" name="b_email_input" id = "b_email_input"class="input-xlarge"
+													<input required type="text" name="b_email_input" id = "b_email_input"class="input-xlarge"
 														placeholder="승인번호 ex)1234 "> <span
 														class="input-group-btn" id="b_email_span">
 														<button type="button" name="b_email_btn" id="b_email_confirm_btn">확인</button>
@@ -562,13 +695,13 @@ input.radio {
 												<label for="b_zip">주소</label>
 												<div class="controls">
 													<input class="input-xlarge" type="text" name="b_zip"
-														id="sample6_postcode" placeholder="우편번호를 찾으려면 클릭하세요"
-														onclick="sample6_execDaumPostcode()"> <br>
+														id="b_postcode" placeholder="우편번호를 찾으려면 클릭하세요"
+														onclick="b_execDaumPostcode()" required> <br>
 													<input class="input-xlarge" type="text" name="b_addr1"
-														id="sample6_address" placeholder="지번 / 도로명주소"
-														readonly="readonly"><br> 
+														id="b_address" placeholder="지번 / 도로명주소"
+														readonly="readonly" required><br> 
 													<input class="input-xlarge" type="text" name="b_addr2"
-														id="sample6_address2" placeholder="나머지 상세 주소">
+														id="b_address2" placeholder="나머지 상세 주소" required>
 												</div>
 											</div>
 											<!-- -------------------------------------------------------------- -->
@@ -626,18 +759,17 @@ input.radio {
 						
 						
 						
-						<!-- // TODO -->
-						<!-- 판매자 회원가입 -->
+						
 						<div class="accordion-group">
 							<div class="accordion-heading">
-								<a class="accordion-toggle" data-toggle="collapse"
-									data-parent="#accordion2" href="#collapseTwo">Sign up for Seller</a>
+								<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
+								Sign up for Seller</a>
 							</div>
-							<div id="collapseOne" class="accordion-body in collapse"><!--TODO: ccordion-body collapse  -->
+							<div id="collapseTwo" class="accordion-body in collapse">
 								<div class="accordion-inner">
 									<div class="row-fluid">
 									<h4 class="title"><span class="text"><strong>Register</strong> Form</span></h4>
-									<form action="login_result" method="post" id="fileForm" role="form">
+									<form action="s_register_result" method="post" id="fileForm2" role="form">
 										<!-- ######################################## -->
 										<!-- 왼쪽 -->
 										<div class="span6">
@@ -648,7 +780,7 @@ input.radio {
 											<div class="control-group">
 												<label>이름</label> 
 												<div class="controls">
-													<input class="input-xlarge" type="text" name="b_name" id="txt"
+													<input class="input-xlarge" type="text" name="s_name" id="txt"
 														required placeholder="홍길동" />
 												</div>
 											</div><!-- ### 완료 ###-->
@@ -656,47 +788,47 @@ input.radio {
 											<!-- -------------------------------------------------------------- -->
 											
 											<div class="control-group">
-												<label for="b_id">아이디 &nbsp;&nbsp; 
-													<span id="duplicationCheckResult"></span> 
+												<label for="s_id">아이디 &nbsp;&nbsp; 
+													<span id="s_duplicationCheckResult"></span> 
 												</label> 
 												<div class="controls">
-													<input class="input-xlarge" type="text" name="b_id"
-														id="b_id" placeholder="아이디" required />
+													<input class="input-xlarge" type="text" name="s_id"
+														id="s_id" placeholder="아이디" required />
 												</div>
 											</div><!-- ### 완료 ###-->
 											<!-- -------------------------------------------------------------- -->
 											
 											 <div class="control-group">
-											 	<label for="b_pw">비밀번호 </label> 
+											 	<label for="s_pw">비밀번호 </label> 
 											 	<div class="controls">
-												 	<input required name="b_pw" type="password" class="input-xlarge"
-														minlength="4" maxlength="16" id="pass1" placeholder="비밀번호" />
+												 	<input required name="s_pw" type="password" class="input-xlarge"
+														minlength="4" maxlength="16" id="s_pass1" placeholder="비밀번호" />
 												</div>
 											 </div><!-- ### 완료 ###-->
 											 
 											<!-- -------------------------------------------------------------- -->
 											
 											 <div class="control-group">
-												<label for="b_pw_check">비밀번호 확인 &nbsp;&nbsp;
-													<span id="confirmMessage"></span> 
+												<label for="s_pw_check">비밀번호 확인 &nbsp;&nbsp;
+													<span id="s_confirmMessage"></span> 
 												</label> 
 												<div class="controls">
-													<input required name="b_pw_check"
+													<input required name="s_pw_check"
 														type="password" class="input-xlarge" minlength="4"
-														maxlength="16" placeholder="비밀번호 확인(위와 동일하게 입력하세요)" id="pass2"
-														onkeyup="checkPass(); return false;" /> 
+														maxlength="16" placeholder="비밀번호 확인(위와 동일하게 입력하세요)" id="s_pass2"
+														onkeyup="s_checkPass(); return false;" /> 
 												</div>
 											 </div><!-- ### 완료 ###-->
 
 											 
 											<!-- -------------------------------------------------------------- -->
 											<div class="form-group">
-												<label for="b_gender">성별</label> 
+												<label for="s_gender">성별</label> 
 												<label class="radio-inline">
-													<input type="radio" name="b_gender" value="1" checked>남자
+													<input type="radio" name="s_gender" value="1" checked>남자
 												</label> 
 												<label class="radio-inline">
-													<input type="radio" name="b_gender" value="2">여자
+													<input type="radio" name="s_gender" value="2">여자
 												</label>
 											</div> <!-- ### 완료 ###-->
 											 <br>
@@ -719,23 +851,23 @@ input.radio {
 											<!-- -------------------------------------------------------------- -->
 											
 											<div class="control-group">
-												<label class="birth-lbl" for="b_birth">생년월일</label>
+												<label class="birth-lbl" for="s_birth">생년월일</label>
 												<div class="controls">
-													<input class="input-xlarge" required type="date" name="b_birth" placeholder="생년월일 ex)901214">
+													<input class="input-xlarge" required type="date" name="s_birth" placeholder="생년월일 ex)901214">
 												</div>
 											</div>										 
 											<!-- -------------------------------------------------------------- -->
 											
 											 <div class="control-group">
-											 	<label for="b_email">이메일 주소 &nbsp;&nbsp; 
+											 	<label for="s_email">이메일 주소 &nbsp;&nbsp; 
 											 	<!-- <small id="duplicationCheckResult2">
 											 	 	유효한 이메일임을 확인하기 위해서 확인메일을 보냅니다.</small> -->
 												</label>
-												<div class="controls" id="b_email">
-													<input type="email" id='email' name="b_email" class="input-xlarge"
+												<div class="controls" id="s_email">
+													<input required type="email" id='s_email2' name="s_email" class="input-xlarge"
 														placeholder="이메일주소 입력 ">
-												    <span class="input-group-btn" id="b_check">
-														<button type="button" name="btn_for_check" id="showConfirmForm">승인번호 얻기</button>
+												    <span class="input-group-btn" id="s_check">
+														<button type="button" id="s_showConfirmForm">승인번호 얻기</button>
 													</span>
 												</div>
 											 </div>
@@ -748,16 +880,16 @@ input.radio {
 											<!-- -------------------------------------------------------------- -->
 											
 											<div class="form-group" id="confirmForm_form-group">
-												<label for="b_email_input">승인번호 입력 &nbsp;&nbsp; 
+												<label for="s_email_input">승인번호 입력 &nbsp;&nbsp; 
 												<!-- <small> 이메일로 보낸 승인번호를 입력해주세요.</small> -->
 														<!-- <small style="display:none;" id="check_code">hide</small> -->
 														<!-- <small id="check_code">hide</small>  --><!-- ### TEST ### 빠른 인증번호 확인을 위한 코드 -->
 												</label>
-												<div class="controls" id="b_email_input-group">
-													<input type="text" name="b_email_input" id = "b_email_input"class="input-xlarge"
+												<div class="controls" id="s_email_input-group">
+													<input type="text" name="s_email_input" id = "s_email_input"class="input-xlarge"
 														placeholder="승인번호 ex)1234 "> <span
-														class="input-group-btn" id="b_email_span">
-														<button type="button" name="b_email_btn" id="b_email_confirm_btn">확인</button>
+														class="input-group-btn" id="s_email_span">
+														<button type="button" name="s_email_btn" id="s_email_confirm_btn">확인</button>
 													</span>
 												</div>
 											</div>
@@ -765,16 +897,16 @@ input.radio {
 											<!-- -------------------------------------------------------------- -->
 
 											<div class="control-group">
-												<label for="b_zip">주소</label>
+												<label for="s_zip">주소</label>
 												<div class="controls">
-													<input class="input-xlarge" type="text" name="b_zip"
-														id="sample6_postcode" placeholder="우편번호를 찾으려면 클릭하세요"
-														onclick="sample6_execDaumPostcode()"> <br>
-													<input class="input-xlarge" type="text" name="b_addr1"
-														id="sample6_address" placeholder="지번 / 도로명주소"
-														readonly="readonly"><br> 
-													<input class="input-xlarge" type="text" name="b_addr2"
-														id="sample6_address2" placeholder="나머지 상세 주소">
+													<input class="input-xlarge" type="text" name="s_zip"
+														id="s_postcode" placeholder="우편번호를 찾으려면 클릭하세요"
+														onclick="s_execDaumPostcode()" required> <br>
+													<input class="input-xlarge" type="text" name="s_addr1"
+														id="s_address" placeholder="지번 / 도로명주소"
+														readonly="readonly" required><br> 
+													<input class="input-xlarge" type="text" name="s_addr2"
+														id="s_address2" placeholder="나머지 상세 주소" required>
 												</div>
 											</div>
 											<!-- -------------------------------------------------------------- -->

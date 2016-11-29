@@ -34,8 +34,9 @@ public class HomeController {
 		model.addAttribute("serverTime", formattedDate );
 		
 
-		return "/UI/register";
+		//return "/UI/register";
 		//return "imgur";
+		return "/UI/index";
 	}
 	
 }
