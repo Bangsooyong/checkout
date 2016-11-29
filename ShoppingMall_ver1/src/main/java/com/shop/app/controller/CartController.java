@@ -5,8 +5,11 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -40,10 +43,20 @@ public class CartController {
 		return "test_cart";
 	}
 	
-	@RequestMapping(value="deleteCart", method=RequestMethod.GET)
-	public String deleteCart(int c_no){
+	@RequestMapping(value="deleteCart", method=RequestMethod.POST)
+	public ResponseEntity<String> deleteCart(@PathVariable("c_no") Integer c_no){
 		logger.info("deleteCart 컨트롤러 실행");
-		return "";
+		ResponseEntity<String> entity = null;
+		logger.info("c_no : "+c_no);
+		int result = cartService.deleteCart(1);
+		
+		if (result ==1){
+			entity = new ResponseEntity<>("success", HttpStatus.OK);
+		} else {
+			entity = new ResponseEntity<>("fail", HttpStatus.BAD_REQUEST);
+		}
+		return entity;
+		
 	}
 	
 }

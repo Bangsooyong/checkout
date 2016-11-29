@@ -23,7 +23,7 @@ public class CartDAOImpl implements CartDAO {
 	/* ----------------------------------------------------------------------------------------------------- */
 	@Override
 	public int deleteCart(int c_no) {
-		return sqlSession.delete(NAMESPACE, c_no);
+		return sqlSession.delete(NAMESPACE+".cart-delete", c_no);
 	}
 	/* ----------------------------------------------------------------------------------------------------- */
 	@Override

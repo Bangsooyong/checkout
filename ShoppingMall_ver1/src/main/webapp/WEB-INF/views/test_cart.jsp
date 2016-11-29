@@ -22,7 +22,7 @@ tr td{
 
 	<table>
 		<tr>
-			<th><input type="checkbox" id="allCheck" onclick="allChk(this);"></th>
+			<th><input type="checkbox" class="checkall" onclick="allChk(this);"></th>
 			<th>상품이미지</th>
 			<!-- <th>상품번호</th> -->
 			<th>상품이름</th>
@@ -34,7 +34,7 @@ tr td{
 		<c:forEach var="vo" items="${cartList}">
 
 			<tr>
-				<td><input type="checkbox" value="${vo.c_no}" name="RowCheck"></td>
+				<td><input type="checkbox" value="${vo.c_no}" name="RowCheck" class="checkbox"></td>
 				<td><img src="http://i.imgur.com/wB73OvB.jpg" style="width: 50px"/></td>
 				<td>${vo.p_name }</td>
 				<td>${vo.o_cont }</td>
@@ -47,12 +47,14 @@ tr td{
 	</table>
 	
 	<div>총 구매 가격 : <span id="total"></span></div>
+	<input type="button" value="삭제" class="deleteall">
 	
 
-	<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+	<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 	<script>
-
-	 function allChk(obj){
+		
+// 체크박스 올체크
+function allChk(obj){
 	      var chkObj = document.getElementsByName("RowCheck");
 	      var rowCnt = chkObj.length - 1;
 	      var check = obj.checked;
@@ -68,35 +70,54 @@ tr td{
 	           }
 	          }
 	      }
-	  }
-	 function fn_userDel(){
-		  var userid = "";
-		  var memberChk = document.getElementsByName("RowCheck");
-		  var chked = false;
-		  var indexid = false;
-		  for(i=0; i < memberChk.length; i++){
-		   if(memberChk[i].checked){
-		    if(indexid){
-		      userid = userid + '-';
-		    }
-		    userid = userid + memberChk[i].value;
-		    indexid = true;
-		   }
-		  }
-		  if(!indexid){
-		   alert("삭제할 사용자를 체크해 주세요");
-		   return;
-		  }
-		  document.userForm.delUserid.value = userid;       // 체크된 사용자 아이디를 '-'로 묶은 userid 를     
-		                                                                               
-		  
-		  var agree=confirm("삭제 하시겠습니까?");
-		     if (agree){
-		   document.userForm.execute.value = "userDel";
-		     document.userForm.submit();
-		     } 
-		  }﻿
-		
+	  } 
+	  
+// 삭제 이벤트
+$('.deleteall').on("click", function(event){
+
+    var tb = $(this).attr('title');
+    var sel = false;
+    var ch = $('input[name="RowCheck"]:checked');
+    var c_no = $('input[name="RowCheck"]:checked').val();
+    var c = confirm('정말로 삭제하시겠어요?');
+    if(c) {
+      ch.each(function(){
+         var $this = $(this);
+            if($this.is(':checked')) {
+                    sel = true; //set to true if there is/are selected row
+///////////////////////////////////////////////////////////////////////////
+                    $.ajax({
+			type: 'post',
+			url: 'deleteCart',
+			headers: {
+				'Content-Type': 'application/json',
+				'X-HTTP-Method-Override': 'POST'
+			},
+			/* JSON.stringify({}): JavaScript 객체를 JSON 문자열로 변환 */
+			data: JSON.stringify({
+				c_no: ch
+			}),
+			success: function(result) {
+				if (result == 1) {
+					alert('장바구니 삭제 성공');
+				}
+
+				
+			} 
+		});
+        /////////////////////////////////////////////////////////            
+                    
+                $this.parents('tr').fadeOut(function(){
+                $this.remove(); //remove row when animation is finished
+                });
+            }
+      });
+          if(!sel) alert('체크박스를 선택하세요');
+    }
+    return false;
+});
+
+
 	
 	
 	

@@ -33,7 +33,6 @@ height: 100px;
 					<td><img id="0" class="preview normal" src="http://i.imgur.com/wB73OvB.jpg" alt="preview"/></td>
 					<td>${vo.p_no }</td>
 					<td><a href="detail?p_no=${vo.p_no }">${vo.p_name }</a></td>
-					<td>${vo.p_name }</td>
 					<td>${vo.p_price }</td>
 					<td>
 						<fmt:formatDate value="${vo.p_reg }" 

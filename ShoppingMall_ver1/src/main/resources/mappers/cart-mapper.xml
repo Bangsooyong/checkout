@@ -18,6 +18,6 @@
 	</select>
 
 	<delete id="cart-delete">
-		delete from s_tbl_cart where c_id = #{c_id} 
+		delete from s_tbl_cart where c_no = #{c_no} 
 	</delete>
 </mapper>
