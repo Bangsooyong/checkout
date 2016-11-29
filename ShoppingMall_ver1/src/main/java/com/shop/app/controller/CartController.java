@@ -45,6 +45,22 @@ public class CartController {
 		return "test_cart";
 	}
 	
+	////////////////////////////////////////////////////////////////
+	@RequestMapping(value="selectCart2", method=RequestMethod.GET)
+	public String selectCart2(Model model){
+		logger.info("selectCart 컨트롤러 실행");
+		// TODO: 로그인 세션으로 b_id 줘야함.. 임시로 aaaa해놈
+		String b_id="aaaa";
+		List<CartVO> list = cartService.read(b_id);
+		list.get(0).getBuy_cnt();
+		model.addAttribute("cartList", list);
+	//	return "test_cart";
+		return "sudo_cart2";
+	}
+	/////////////////////////////////////////////////////////////////
+	
+	
+	
 	@RequestMapping(value="deleteCart", method=RequestMethod.POST)
 	public void deleteCart(@RequestBody int c_no, HttpServletResponse response) throws IOException{
 		logger.info("deleteCart 컨트롤러 실행");

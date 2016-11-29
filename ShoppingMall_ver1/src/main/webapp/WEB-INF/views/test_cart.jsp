@@ -32,8 +32,8 @@ tr td {
 			<th>구매수량</th>
 			<th>총주문금액</th>
 		</tr>
+		
 		<c:forEach var="vo" items="${cartList}">
-
 			<tr>
 				<td><input type="checkbox" value="${vo.c_no}" name="RowCheck"
 					class="checkbox"></td>
@@ -81,55 +81,40 @@ tr td {
 		}
 
 		// 장바구니 삭제 이벤트
-		$('.deleteall')
-				.on(
-						"click",
-						function(event) {
-							var tb = $(this).attr('title');
-							var sel = false;
-							var ch = $('input[name="RowCheck"]:checked');
-							var c = confirm('정말로 삭제하시겠어요?');
-							if (c) {
-								ch
-										.each(function() {
-											var $this = $(this);
-											if ($this.is(':checked')) {
-												sel = true; //set to true if there is/are selected row
-												$this
-														.parents('tr')
-														.fadeOut(
-																function() {
-																	$
-																			.ajax({
-																				type : 'post',
-																				url : 'deleteCart',
-																				headers : {
-																					'Accept' : 'application/json',
-																					'Content-Type' : 'application/json'
-																				},
-																				data : $(
-																						'input[name="RowCheck"]:checked')
-																						.val(),
-																				success : function(
-																						result) {
-																					if (result == 1) {
-																						alert('장바구니 삭제 성공');
-																					} else {
-																						alert('실패');
-																					}
-																				}
-																			});
-																	$this
-																			.remove(); //remove row when animation is finished
-																});
-											}
+		$('.deleteall').on("click",function(event) {
+				var tb = $(this).attr('title');
+				var sel = false;
+				var ch = $('input[name="RowCheck"]:checked');
+				var c = confirm('정말로 삭제하시겠어요?');
+				if (c) {ch.each(function() {
+						var $this = $(this);
+						if ($this.is(':checked')) {
+							sel = true; //set to true if there is/are selected row
+							$this.parents('tr').fadeOut(function() {/// ***** 삭제 이벤트 모션
+								$.ajax({ type : 'post',
+										 url : 'deleteCart',
+										 headers : {
+											'Accept' : 'application/json',
+											'Content-Type' : 'application/json'
+										 },data : $('input[name="RowCheck"]:checked').val(),
+													success : function(result) {
+														if (result == 1) {
+															alert('장바구니 삭제 성공');
+														} else {
+															alert('실패');
+														}
+													}
 										});
-								if (!sel)
-									alert('체크박스를 선택하세요');
-							}
-							return false;
-						});
-		
+									$this.remove(); //remove row when animation is finished
+							});
+						}
+			    });
+		if (!sel)
+			alert('체크박스를 선택하세요');
+		}
+			return false;
+		});
+
 		// 주문 및 총 계산 이벤트
 			var sum = 0;
 			$(".CartTotal").each(function(){
