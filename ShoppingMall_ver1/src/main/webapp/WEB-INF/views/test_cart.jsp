@@ -77,11 +77,8 @@ tr td {
 
  		var rowCnt = chkObj.length - 1;
  			for (var i = 0; i <= rowCnt; i++) {
- 					
- 		
- 						var text1 =chkObj[i].parentNode.parentNode.children[6].innerText * 1;// String 에서 숫자로 변환
+						var text1 =chkObj[i].parentNode.parentNode.children[6].innerText * 1;// String 에서 숫자로 변환
  						finalCartPrice += text1;
- 						
  					} 
  			$("#price").val(finalCartPrice);
 	}
@@ -98,16 +95,21 @@ tr td {
     $inputs.on('change', function () {
     	 finalCartPrice = 0;
 		var chkObj = document.getElementsByName("RowCheck");
-
-		var rowCnt = chkObj.length - 1;
-			for (var i = 0; i <= rowCnt; i++) {
+	
+		var rowCnt = chkObj.length ;
+		var totalval = 0;
+			for (var i = 0; i < rowCnt; i++) {
 					if (chkObj[i].checked == true){
-		
 						var text1 =chkObj[i].parentNode.parentNode.children[6].innerText * 1;// String 에서 숫자로 변환
 						finalCartPrice += text1;
 						$("#price").val(finalCartPrice)
-					} 
+					} else{
+						totalval+=1;
+					}
 				}
+			if(totalval == rowCnt ){
+				$("#price").val(0)
+			}
 
     });
     
