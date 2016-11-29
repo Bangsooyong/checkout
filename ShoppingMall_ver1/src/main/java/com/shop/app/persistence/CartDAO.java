@@ -11,4 +11,6 @@ public interface CartDAO {
 	public abstract int deleteCart(int c_no);
 	// 장바구니 불러오기
 	public abstract List<CartVO> selectAll(String b_id);
+	// 수량 업데이트
+	public abstract int updateCount(int c_no, int buy_cnt);
 }

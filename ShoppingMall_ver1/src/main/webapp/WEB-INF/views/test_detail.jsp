@@ -54,7 +54,7 @@ border:3px solid #ff0000;}
 			<span>가격 : </span>${productDetail.p_price }</div>
 			<input type="hidden" value="${productDetail.p_price }" name="p_price">
 		<div>
-			<span>구매 수량 : </span><input type="number" name="buy_cnt">
+			<span>구매 수량 : </span><input type="number" required name="buy_cnt">
 		</div>
 		<div><span>상품 옵션 : </span>
 		<select name="o_cont">

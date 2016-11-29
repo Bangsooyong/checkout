@@ -20,4 +20,8 @@
 	<delete id="cart-delete">
 		delete from s_tbl_cart where c_no = #{c_no} 
 	</delete>
+	
+	<update id="cart-update-buy_cnt">
+		update s_tbl_cart set buy_cnt = #{buy_cnt} where c_no = #{c_no}
+	</update>
 </mapper>

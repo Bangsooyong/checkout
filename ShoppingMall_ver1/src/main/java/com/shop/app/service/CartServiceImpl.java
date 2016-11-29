@@ -26,5 +26,9 @@ public class CartServiceImpl implements CartService{
 	public int deleteCart(int c_no) {
 		return dao.deleteCart(c_no);
 	}
+	@Override
+	public int updateBuyCnt(int c_no, int buy_cnt) {
+		return dao.updateCount(c_no, buy_cnt);
+	}
 
 }

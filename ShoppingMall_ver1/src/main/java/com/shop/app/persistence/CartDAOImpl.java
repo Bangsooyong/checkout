@@ -1,6 +1,8 @@
 package com.shop.app.persistence;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +31,14 @@ public class CartDAOImpl implements CartDAO {
 	@Override
 	public List<CartVO> selectAll(String b_id) {
 		return sqlSession.selectList(NAMESPACE+".cart-select-by-b_id", b_id);
+	}
+	/* ----------------------------------------------------------------------------------------------------- */
+	@Override
+	public int updateCount(int c_no, int buy_cnt) {
+		Map<String, Integer> map = new HashMap<>();
+		map.put("c_no", c_no);
+		map.put("buy_cnt", buy_cnt);
+		return sqlSession.update(NAMESPACE+".cart-update-buy_cnt", map);
 	}
 
 }

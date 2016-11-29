@@ -1,15 +1,16 @@
 package com.shop.app.controller;
 
+import java.io.IOException;
 import java.util.List;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -35,6 +36,7 @@ public class CartController {
 	
 	@RequestMapping(value="selectCart", method=RequestMethod.GET)
 	public String selectCart(Model model){
+		logger.info("selectCart 컨트롤러 실행");
 		// TODO: 로그인 세션으로 b_id 줘야함.. 임시로 aaaa해놈
 		String b_id="aaaa";
 		List<CartVO> list = cartService.read(b_id);
@@ -44,19 +46,23 @@ public class CartController {
 	}
 	
 	@RequestMapping(value="deleteCart", method=RequestMethod.POST)
-	public ResponseEntity<String> deleteCart(@PathVariable("c_no") Integer c_no){
+	public void deleteCart(@RequestBody int c_no, HttpServletResponse response) throws IOException{
 		logger.info("deleteCart 컨트롤러 실행");
-		ResponseEntity<String> entity = null;
 		logger.info("c_no : "+c_no);
-		int result = cartService.deleteCart(1);
-		
-		if (result ==1){
-			entity = new ResponseEntity<>("success", HttpStatus.OK);
+		int result = cartService.deleteCart(c_no);
+		if (result==1){
+			response.getWriter().print(1);
+			logger.info("장바구니 삭제 성공");
 		} else {
-			entity = new ResponseEntity<>("fail", HttpStatus.BAD_REQUEST);
+			response.getWriter().print(2);
+			logger.info("장바구니 삭제 실패");
 		}
-		return entity;
-		
+	}
+	
+	@RequestMapping(value="updateCartBuyCnt", method=RequestMethod.GET)
+	public String updateCart(int c_no, int buy_cnt){
+		cartService.updateBuyCnt(c_no, buy_cnt);
+		return "redirect:selectCart";
 	}
 	
 }
