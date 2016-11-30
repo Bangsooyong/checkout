@@ -9,4 +9,5 @@ public interface CartService {
 	public abstract int deleteCart(int c_no);
 	public abstract List<CartVO> read(String b_id);
 	public abstract int updateBuyCnt(int c_no, int buy_cnt);
+	public abstract List<CartVO> readCart(int c_no);
 }

@@ -14,7 +14,10 @@ table {
 
 tr td {
 	border: 1px solid gray;
+	text-align: center;
 }
+
+
 </style>
 
 </head>
@@ -32,6 +35,7 @@ tr td {
 			<th>구매수량</th>
 			<th>총주문금액</th>
 		</tr>
+		
 		<c:forEach var="vo" items="${cartList}">
 
 			<tr>
@@ -61,15 +65,15 @@ tr td {
 	<div>
 		총 구매 가격 :
 		<!-- 총 가격 -->
-		<input id="price" value="0" readonly="readonly">
+		<input id="price" value="0" readonly="readonly" type="number" step="100" style="width: 269px">
 	</div>
 	<input type="button" value="장바구니에서 삭제" class="deleteall">
+	
+	<!-- 주문하기  -->
+	<input type="button" value="주문하기" id="insertOrder" />
 
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-
-
-
 
 	<script>
 		var finalCartPrice = 0; // 최종가격 변수
@@ -84,6 +88,7 @@ tr td {
 				var text1 = chkObj[i].parentNode.parentNode.children[6].innerText * 1;// String 에서 숫자로 변환
 				finalCartPrice += text1;
 			}
+			
 			$("#price").val(finalCartPrice);
 		}
 
@@ -176,7 +181,13 @@ tr td {
 							return false;
 						});
 
-		// 주문 및 총 계산 이벤트
+		// 주문 이벤트
+			$('#insertOrder').on("click",function() {
+				
+				
+			});
+		
+
 	</script>
 
 

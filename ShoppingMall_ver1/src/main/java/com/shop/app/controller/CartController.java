@@ -46,7 +46,7 @@ public class CartController {
 			return "test_cart";	
 		} else {
 			logger.info("장바구니빔... 예외처리 추가 필요함");
-			return "";
+			return "redirect:/";
 		}
 		
 	}
@@ -86,5 +86,21 @@ public class CartController {
 		cartService.updateBuyCnt(c_no, buy_cnt);
 		return "redirect:selectCart2";
 	}
+	
+	@RequestMapping(value="cartTossOrder", method=RequestMethod.POST)
+	public void tossToOrder(@RequestBody int c_no, HttpServletResponse response, Model model) throws IOException{
+		List<CartVO> list  = cartService.readCart(c_no);
+		if (list!=null){
+			model.addAttribute("listForOrder", list);
+			response.getWriter().print(1);
+			logger.info("장바구니리스트를 오더리스트로 넘기기 성공");
+			
+		} else {
+			response.getWriter().print(2);
+			logger.info("장바구니 삭제 실패");
+
+		} 
+	}
+	
 	
 }

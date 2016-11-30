@@ -40,5 +40,10 @@ public class CartDAOImpl implements CartDAO {
 		map.put("buy_cnt", buy_cnt);
 		return sqlSession.update(NAMESPACE+".cart-update-buy_cnt", map);
 	}
+	/* ----------------------------------------------------------------------------------------------------- */
+	@Override
+	public List<CartVO> selectCart(int c_no) {
+		return sqlSession.selectList(NAMESPACE+".cart-select-by-c_no", c_no);
+	}
 
 }

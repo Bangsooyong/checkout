@@ -16,6 +16,10 @@
 	<select id="cart-select-by-b_id" resultType="com.shop.app.domain.CartVO">
 		select * from s_tbl_cart where b_id = #{b_id}
 	</select>
+	
+	<select id="cart-select-by-c_no" resultType="com.shop.app.domain.CartVO">
+		select * from s_tbl_cart where c_no = #{c_no}
+	</select>
 
 	<delete id="cart-delete">
 		delete from s_tbl_cart where c_no = #{c_no} 

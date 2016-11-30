@@ -6,5 +6,10 @@
   
 <mapper namespace="com.shop.app.OrderMapper">
 
+<insert id="order-insert">
+ insert into s_tbl_buy(buy_no, b_id, p_no, p_name, p_price, buy_cnt, o_cont, buy_date, delivery_zip, delivery_addr1, buy_status, delivery_addr2) 
+ values(#{buy_no}, #{b_id}, #{p_no}, #{p_name}, #{p_price}, #{buy_cnt}, #{o_cont}, #{buy_date}, #{delivery_zip}, #{delivery_addr1}, #{buy_status}, #{delivery_addr2}) 
+</insert>
+
  
 </mapper>
