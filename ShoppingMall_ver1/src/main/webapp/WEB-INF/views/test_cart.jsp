@@ -65,7 +65,7 @@ tr td {
 	<div>
 		총 구매 가격 :
 		<!-- 총 가격 -->
-		<input id="price" value="0" readonly="readonly" type="number" step="100">
+		<input id="price" value="0" readonly="readonly" type="number" step="100" style="width: 269px">
 	</div>
 	<input type="button" value="장바구니에서 삭제" class="deleteall">
 	
@@ -74,9 +74,6 @@ tr td {
 
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-
-
-
 
 	<script>
 		var finalCartPrice = 0; // 최종가격 변수
@@ -184,47 +181,10 @@ tr td {
 						});
 
 		// 주문 이벤트
-			$('#insertOrder')
-				.on(
-						"click",
-						function(event) {
-							var tb = $(this).attr('title');
-							var sel = false;
-							var ch = $('input[name="RowCheck"]:checked');
-							var c = confirm('정말로 주문하시겠어요?');
-							if (c) {
-								ch.each(function() {
-											var $this = $(this);
-											if ($this.is(':checked')) {
-												sel = true; //set to true if there is/are selected row
-												$this.parents('tr').fadeOut(function() {
-																	$.ajax({
-																				type : 'post',
-																				url : 'cartTossOrder',
-																				headers : {
-																					'Accept' : 'application/json',
-																					'Content-Type' : 'application/json'
-																				},
-																				data : $(
-																						'input[name="RowCheck"]:checked').val(),
-																				success : function(result) {
-																					if (result == 1) {
-																						location.href = "/order/openOrder"
-																					} else {
-
-																					}
-																				}
-																			});
-																	$this
-																			.remove(); //remove row when animation is finished
-																});
-											}
-										});
-								if (!sel)
-									alert('체크박스를 선택하세요');
-							}
-							return false;
-						});
+			$('#insertOrder').on("click",function() {
+				
+				
+			});
 		
 
 	</script>
