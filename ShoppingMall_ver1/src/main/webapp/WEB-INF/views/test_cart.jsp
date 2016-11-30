@@ -75,11 +75,12 @@ tr td {
 		var finalCartPrice = 0; // 최종가격 변수
 		price();
 		function price() {
-			finalCartPrice = 0;
-			var chkObj = document.getElementsByName("RowCheck");
+			finalCartPrice = 0; // 최대값 구할때 처럼 미리 변수를 설정해 놓는다.
+			var chkObj = document.getElementsByName("RowCheck"); // 장바구니에 체크된 전체 리스트의 목록을 배열로 받는다.
 
 			var rowCnt = chkObj.length - 1;
 			for (var i = 0; i <= rowCnt; i++) {
+				//console.logchkObj[i].parentNode.parentNode();
 				var text1 = chkObj[i].parentNode.parentNode.children[6].innerText * 1;// String 에서 숫자로 변환
 				finalCartPrice += text1;
 			}

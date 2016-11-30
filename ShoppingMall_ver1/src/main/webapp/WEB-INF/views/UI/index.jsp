@@ -122,7 +122,8 @@
 								<div id="myCarousel" class="myCarousel carousel slide">
 									<div class="carousel-inner">
 										<div class="active item">
-											<ul class="thumbnails">												
+											<ul class="thumbnails">		
+															<!-- ------------------------  -->						
 												<li class="span3">
 													<div class="product-box">
 														<span class="sale_tag"></span>

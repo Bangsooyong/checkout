@@ -84,7 +84,7 @@ public class CartController {
 	@RequestMapping(value="updateCartBuyCnt", method=RequestMethod.GET)
 	public String updateCart(int c_no, int buy_cnt){
 		cartService.updateBuyCnt(c_no, buy_cnt);
-		return "redirect:selectCart";
+		return "redirect:selectCart2";
 	}
 	
 }
