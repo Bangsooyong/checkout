@@ -14,7 +14,10 @@ table {
 
 tr td {
 	border: 1px solid gray;
+	text-align: center;
 }
+
+
 </style>
 
 </head>
@@ -32,6 +35,7 @@ tr td {
 			<th>구매수량</th>
 			<th>총주문금액</th>
 		</tr>
+		
 		<c:forEach var="vo" items="${cartList}">
 
 			<tr>
@@ -61,9 +65,12 @@ tr td {
 	<div>
 		총 구매 가격 :
 		<!-- 총 가격 -->
-		<input id="price" value="0" readonly="readonly">
+		<input id="price" value="0" readonly="readonly" type="number" step="100">
 	</div>
 	<input type="button" value="장바구니에서 삭제" class="deleteall">
+	
+	<!-- 주문하기  -->
+	<input type="button" value="주문하기" id="insertOrder" />
 
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -83,6 +90,7 @@ tr td {
 				var text1 = chkObj[i].parentNode.parentNode.children[6].innerText * 1;// String 에서 숫자로 변환
 				finalCartPrice += text1;
 			}
+			
 			$("#price").val(finalCartPrice);
 		}
 
@@ -175,7 +183,50 @@ tr td {
 							return false;
 						});
 
-		// 주문 및 총 계산 이벤트
+		// 주문 이벤트
+			$('#insertOrder')
+				.on(
+						"click",
+						function(event) {
+							var tb = $(this).attr('title');
+							var sel = false;
+							var ch = $('input[name="RowCheck"]:checked');
+							var c = confirm('정말로 주문하시겠어요?');
+							if (c) {
+								ch.each(function() {
+											var $this = $(this);
+											if ($this.is(':checked')) {
+												sel = true; //set to true if there is/are selected row
+												$this.parents('tr').fadeOut(function() {
+																	$.ajax({
+																				type : 'post',
+																				url : 'cartTossOrder',
+																				headers : {
+																					'Accept' : 'application/json',
+																					'Content-Type' : 'application/json'
+																				},
+																				data : $(
+																						'input[name="RowCheck"]:checked').val(),
+																				success : function(result) {
+																					if (result == 1) {
+																						location.href = "/order/openOrder"
+																					} else {
+
+																					}
+																				}
+																			});
+																	$this
+																			.remove(); //remove row when animation is finished
+																});
+											}
+										});
+								if (!sel)
+									alert('체크박스를 선택하세요');
+							}
+							return false;
+						});
+		
+
 	</script>
 
 

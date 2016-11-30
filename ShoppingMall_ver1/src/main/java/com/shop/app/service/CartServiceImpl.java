@@ -30,5 +30,9 @@ public class CartServiceImpl implements CartService{
 	public int updateBuyCnt(int c_no, int buy_cnt) {
 		return dao.updateCount(c_no, buy_cnt);
 	}
+	@Override
+	public List<CartVO> readCart(int c_no) {
+		return dao.selectCart(c_no);
+	}
 
 }

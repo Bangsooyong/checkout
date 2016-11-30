@@ -9,8 +9,10 @@ public interface CartDAO {
 	public abstract int insertCart(CartVO vo);
 	// 장바구니 삭제
 	public abstract int deleteCart(int c_no);
-	// 장바구니 불러오기
+	// 장바구니 리스트 불러오기
 	public abstract List<CartVO> selectAll(String b_id);
 	// 수량 업데이트
 	public abstract int updateCount(int c_no, int buy_cnt);
+	// 주문을 위한 장바구니 불러오기
+	public abstract List<CartVO> selectCart(int c_no);
 }
