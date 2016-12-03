@@ -59,7 +59,7 @@ public class CartController {
 			return "test_cart";	
 		} else {
 			logger.info("장바구니빔... 예외처리 추가 필요함");
-			return "redirect:/";
+			return "test_emptyCart";
 		}
 		
 	}
