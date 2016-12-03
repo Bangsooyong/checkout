@@ -22,9 +22,9 @@ public class OrderController {
 	@Autowired
 	CartService cartService;
 	
-	@RequestMapping(value="openOrder", method=RequestMethod.GET)
-	public String openOrder(){
-		return "test_order";
+	@RequestMapping(value="openOrderComplete", method=RequestMethod.GET)
+	public void openOrder(){
+		
 	}
 	
 	@RequestMapping(value="tossOrder", method=RequestMethod.GET)

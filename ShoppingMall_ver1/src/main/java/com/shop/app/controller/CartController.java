@@ -171,7 +171,7 @@ public class CartController {
 			HttpSession session = request.getSession();
 			session.setAttribute("ordered", "ordered");
 			logger.info("주문 성공!, 주문번호 : "+buyNO );
-			return "UI/index";
+			return "test_order_complete";
 		}
 	
 	@RequestMapping(value="test_bill", method=RequestMethod.GET)
