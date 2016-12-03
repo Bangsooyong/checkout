@@ -184,7 +184,6 @@ public class BuyerController {
 			return "redirect:/register";
 		}
 	}
-	
 	@RequestMapping(value="logout", method=RequestMethod.GET)
 	public String logout(HttpServletRequest request){
 		HttpSession session = request.getSession();
@@ -195,15 +194,14 @@ public class BuyerController {
 	}
 	
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-
+	
 	
 /*	// ### TEST
 	@RequestMapping(value="/base", method=RequestMethod.GET)
 	public String baseCheckout(Model model){
 		
-		logger.info("checkout 실행");
+	logger.info("checkout 실행");
 
-	
 	return "/UI/checkout";
 	}*/
 

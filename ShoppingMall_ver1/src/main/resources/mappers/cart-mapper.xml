@@ -13,8 +13,9 @@
          values(#{b_id}, #{p_no}, #{p_name}, #{p_price}, #{buy_cnt}, #{o_cont})
 	</insert>
 	
+	<!-- 카트리스트 불러오기.. 단, 주문번호가 없는것만(삭제방지) -->
 	<select id="cart-select-by-b_id" resultType="com.shop.app.domain.CartVO">
-		select * from s_tbl_cart where b_id = #{b_id}
+		select * from s_tbl_cart where b_id = #{b_id} and buy_no is null
 	</select>
 	
 	<select id="cart-select-by-c_no" resultType="com.shop.app.domain.CartVO">
@@ -28,4 +29,9 @@
 	<update id="cart-update-buy_cnt">
 		update s_tbl_cart set buy_cnt = #{buy_cnt} where c_no = #{c_no}
 	</update>
+	
+	<update id="cart-update-buy_no">
+		update s_tbl_cart set buy_no = #{buy_no} where c_no = #{c_no}
+	</update>
+	
 </mapper>
