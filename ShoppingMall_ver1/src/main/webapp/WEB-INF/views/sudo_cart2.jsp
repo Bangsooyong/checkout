@@ -170,7 +170,7 @@
 									<td>&nbsp;</td>
 									<td>&nbsp;</td>
 									<td>&nbsp;</td>
-									<td><input id="price" value="0" readonly="readonly"></td>
+									<td><strong>$400,000</strong></td>
 									
 								</tr>		  
 							</tbody>

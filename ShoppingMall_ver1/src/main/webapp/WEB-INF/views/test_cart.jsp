@@ -94,8 +94,7 @@ tr td {
 
 		var $inputs = $('input[type="checkbox"]')
 
-		$inputs
-				.change(function() {
+		$inputs.change(function() {
 					finalCartPrice = 0;
 					var chkObj = document.getElementsByName("RowCheck");
 
