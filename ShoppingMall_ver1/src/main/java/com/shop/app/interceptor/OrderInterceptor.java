@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 public class OrderInterceptor extends HandlerInterceptorAdapter{
@@ -15,16 +16,23 @@ public class OrderInterceptor extends HandlerInterceptorAdapter{
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
-		logger.info("prehandle 호출");
+		logger.info("중복 주문 방지 Interceptor,  prehandle 호출");
 		
 		HttpSession session = request.getSession();
-		Object id = session.getAttribute(SESSION_ATTR_ID);
-		if (id!=null){
+		Object oderedCartNO = session.getAttribute(SESSION_ATTR_ID);
+		if (oderedCartNO!= "ordered"){
 			logger.info("중복 submit 방지 Interceptor- 주문 성공");
 			return true;
 		} else {
 			logger.info("중복 submit 방지 Interceptor- 이미 주문했음! ");
 			return false;
 		}
+		
+	}
+	@Override
+	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
+			ModelAndView modelAndView) throws Exception {
+		logger.info("postHandle() 호출");
+//		response.sendRedirect("/shop01/cart/selectCart");
 	}
 }

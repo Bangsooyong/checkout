@@ -70,7 +70,7 @@ tr td {
 		<input id="price" value="0" readonly="readonly" type="number" step="100" style="width: 269px">
 	</div>
 	<input type="button" value="장바구니에서 삭제" class="deleteall">
-<form action="cartTossOrder" method="get" id="toOrder">	
+<form action="cartTossOrder" method="post" id="toOrder">	
 	<!-- 주문하기  -->
 	<input type="hidden" value="" id="hiddenCartNums" name="c_no">
 	<input type="button" value="주문하기" id="CartToController" />

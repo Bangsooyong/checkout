@@ -3,7 +3,10 @@ package com.shop.app.controller;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -101,7 +104,7 @@ public class CartController {
 		response.getWriter().print(totalPricePerItem);
 	}
 	
-	@RequestMapping(value="cartTossOrder", method=RequestMethod.GET)
+	@RequestMapping(value="cartTossOrder", method=RequestMethod.POST)
 	public String tossToOrder(String c_no, Model model) throws IOException{
 		int totalPriceForOrder = 0; // 리스트 합계금액 저장하는변수
 		int shippingCharge = 3000; // 배송비(임의로 정함 나중에 수정 필요)
@@ -144,8 +147,13 @@ public class CartController {
 	}
 	
 	@RequestMapping(value="readyForBill", method=RequestMethod.POST)
-		public String openBill(String c_no, Model model, OrderVO vo, HttpServletResponse response) throws IOException{
-
+		public String openBill(String c_no, Model model, OrderVO vo, HttpServletResponse response, HttpServletRequest request) throws IOException{
+		
+		// 뒤로가기 버튼 누르고 다시 submit 해서 중복 주문 방지하는거 방지용 session
+		// 참고 - OrderInterceptor 클래스
+		HttpSession session = request.getSession();
+		session.setAttribute("ordered", "ordered");
+		
 		logger.info("주문 받은 c_no : " +c_no);
 			// 주문번호를 생성하기위해 OrderVO객체를 s_tbl_order 테이블에 넣음
 			int result = orderService.insertOrder(vo);
@@ -168,8 +176,17 @@ public class CartController {
 		}
 	
 	@RequestMapping(value="test_bill", method=RequestMethod.GET)
-	public void billPop() {
-		
+	public String billPop(HttpServletRequest request) {
+		// 이중 submit 방지용 세션
+		HttpSession session = request.getSession();
+		Object id = session.getAttribute("ordered");
+		if (id!=null){
+			// 주문정보가 있으면
+			return "test_xbill";
+		} else {
+			// 주문정보가 없으면
+			return "test_bill";
+		}
 	}
 	
 }
