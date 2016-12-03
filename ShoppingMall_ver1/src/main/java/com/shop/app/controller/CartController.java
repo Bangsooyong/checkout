@@ -148,11 +148,9 @@ public class CartController {
 	
 	@RequestMapping(value="readyForBill", method=RequestMethod.POST)
 		public String openBill(String c_no, Model model, OrderVO vo, HttpServletResponse response, HttpServletRequest request) throws IOException{
-		
+		int buyNO = 0;
 		// 뒤로가기 버튼 누르고 다시 submit 해서 중복 주문 방지하는거 방지용 session
 		// 참고 - OrderInterceptor 클래스
-		HttpSession session = request.getSession();
-		session.setAttribute("ordered", "ordered");
 		
 		logger.info("주문 받은 c_no : " +c_no);
 			// 주문번호를 생성하기위해 OrderVO객체를 s_tbl_order 테이블에 넣음
@@ -160,7 +158,7 @@ public class CartController {
 			logger.info("Order 테이블에 insert 성공!");
 			if (result == 1){ // 성공하면
 				// (로그인했다고 가정한)사용자의 아이디를 이용해서 s_tbl_order 테이블에서 생성된 buyNO를 얻음
-				int buyNO = orderService.getBuyNo(vo.getB_id());
+				buyNO = orderService.getBuyNo(vo.getB_id());
 				logger.info("Order 테이블에서 buyNO 불러오기 성공! 불러온 주문번호(buy_no) : "+buyNO );
 				if (buyNO>=0){ // 성공하면
 					String[] listCNO = c_no.split(","); // 주문정보에서 얻은 c_no배열을 쪼개고 배열화
@@ -170,8 +168,9 @@ public class CartController {
 					}
 				}
 			}
-		
-			logger.info("주문 성공!");
+			HttpSession session = request.getSession();
+			session.setAttribute("ordered", "ordered");
+			logger.info("주문 성공!, 주문번호 : "+buyNO );
 			return "UI/index";
 		}
 	
@@ -180,12 +179,13 @@ public class CartController {
 		// 이중 submit 방지용 세션
 		HttpSession session = request.getSession();
 		Object id = session.getAttribute("ordered");
-		if (id!=null){
-			// 주문정보가 있으면
-			return "test_xbill";
+		logger.info("세션 "+id);
+		if (id=="ordered"){
+			// 세션이 ordered면
+			return "test_xbill"; // 이미 주문됨.
 		} else {
-			// 주문정보가 없으면
-			return "test_bill";
+			// 세션이 ordered가 아니면 
+			return "test_bill";  // 주문성공
 		}
 	}
 	
