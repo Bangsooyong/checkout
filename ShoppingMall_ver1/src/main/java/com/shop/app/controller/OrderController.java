@@ -38,11 +38,6 @@ public class OrderController {
 	@Autowired
 	BuyerService buyerService;
 	
-	@RequestMapping(value="openOrderComplete", method=RequestMethod.GET)
-	public void openOrder(){
-		
-	}
-	
 	// 체크박스로 모든 아이템들 주문할때
 	@RequestMapping(value="cartTossOrder", method=RequestMethod.POST)
 	public String tossToOrder(String c_no, Model model) throws IOException{
@@ -154,6 +149,7 @@ public class OrderController {
 		return "test_order_complete";
 	}
 	
+	// 중복 주문 검사
 	@RequestMapping(value="test_bill", method=RequestMethod.GET)
 	public String billPop(HttpServletRequest request) {
 		// 이중 submit 방지용 세션
