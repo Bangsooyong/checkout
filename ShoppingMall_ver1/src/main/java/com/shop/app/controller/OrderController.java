@@ -43,7 +43,7 @@ public class OrderController {
 		
 	}
 	
-	// 체크박스로 선택된 아이템들 주문할때
+	// 체크박스로 모든 아이템들 주문할때
 	@RequestMapping(value="cartTossOrder", method=RequestMethod.POST)
 	public String tossToOrder(String c_no, Model model) throws IOException{
 		int totalPriceForOrder = 0; // 리스트 합계금액 저장하는변수
@@ -86,7 +86,7 @@ public class OrderController {
 		return "test_order";	
 	}
 	
-	// 아이템 하나 주문할때
+	// 체크박스 상관없이 아이템 하나 주문할때
 	@RequestMapping(value="OneCartTossOrder", method=RequestMethod.POST)
 	public String OneTossToOrder(int c_no, Model model) throws IOException{
 		int totalPriceForOrder = 0; // 리스트 합계금액 저장하는변수
