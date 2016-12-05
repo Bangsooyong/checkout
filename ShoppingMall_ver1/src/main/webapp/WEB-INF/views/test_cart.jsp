@@ -54,7 +54,7 @@ tr td {
             <!--  가격 -->
             <td>
                   <!-- 수량 -->
-                  <input style="width: 20px;" value="${vo.buy_cnt }"  class="buy_cnt">
+                  <input style="width: 20px;" value="${vo.buy_cnt }"  class="buy_cnt" type="number">
                   <%-- <input type="hidden" value="${vo.c_no}" name="c_no"> <span> --%>
                   <input type="button" value="수정" class="changeCnt"><!-- </span> -->
             <!-- 아이템당 가격 -->
