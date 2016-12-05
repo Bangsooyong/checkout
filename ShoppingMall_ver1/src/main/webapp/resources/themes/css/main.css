@@ -270,7 +270,7 @@ section.navbar{
 	margin-bottom:0;
 }
 .navbar-inner.main-menu {	
-	height: 60px;/* 수정 : 로고들어가는 위치 */
+	height: 55px;/* 수정 : 로고들어가는 위치 */
 	padding-left:10px;	
 	padding-right:0;	
 	border-right: 0;
