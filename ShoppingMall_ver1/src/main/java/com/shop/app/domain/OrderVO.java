@@ -18,24 +18,25 @@ public class OrderVO {
 	String delivery_addr1; // 배송 주소
 	String delivery_addr2; // 배송 상세주소
 	int buy_status; // 주문 상태
+	String b_name;
+	int b_phone;
+	String b_email;
 	
 	// 주문
-	public OrderVO(int buy_no, String b_id, int p_no, String p_name, int p_price, int buy_cnt, String o_cont,
-			Date buy_date, String delivery_zip, String delivery_addr1, String delivery_addr2, int buy_status) {
+	public OrderVO(int buy_no, String b_id, Date buy_date, String delivery_zip, String delivery_addr1, String delivery_addr2, int buy_status,
+			String b_name, int b_phone, String b_email) {
 		this.buy_no = buy_no;
 		this.b_id = b_id;
-		this.p_no = p_no;
-		this.p_name = p_name;
-		this.p_price = p_price;
-		this.buy_cnt = buy_cnt;
-		this.o_cont = o_cont;
 		this.buy_date = buy_date;
 		this.delivery_zip = delivery_zip;
 		this.delivery_addr1 = delivery_addr1;
 		this.delivery_addr2 = delivery_addr2;
 		this.buy_status = buy_status;
+		this.b_name = b_name;
+		this.b_phone = b_phone;
+		this.b_email = b_email;
 	}
-
+	
 	public int getBuy_no() {
 		return buy_no;
 	}
@@ -131,6 +132,32 @@ public class OrderVO {
 	public void setBuy_status(int buy_status) {
 		this.buy_status = buy_status;
 	}
+
+	public String getB_name() {
+		return b_name;
+	}
+
+	public void setB_name(String b_name) {
+		this.b_name = b_name;
+	}
+
+	public int getB_phone() {
+		return b_phone;
+	}
+
+	public void setB_phone(int b_phone) {
+		this.b_phone = b_phone;
+	}
+
+	public String getB_email() {
+		return b_email;
+	}
+
+	public void setB_email(String b_email) {
+		this.b_email = b_email;
+	}
+	
+	
 	
 	
 	

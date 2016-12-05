@@ -14,5 +14,7 @@ public interface CartDAO {
 	// 수량 업데이트
 	public abstract int updateCount(int c_no, int buy_cnt);
 	// 주문을 위한 장바구니 불러오기
-	public abstract List<CartVO> selectCart(int c_no);
+	public abstract CartVO selectCart(int c_no);
+	// 주문번호를 장바구니에 넣기
+	public abstract int updateBuyNO(int buy_no, int c_no);
 }

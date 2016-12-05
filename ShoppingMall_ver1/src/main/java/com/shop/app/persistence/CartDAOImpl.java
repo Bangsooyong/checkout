@@ -42,8 +42,16 @@ public class CartDAOImpl implements CartDAO {
 	}
 	/* ----------------------------------------------------------------------------------------------------- */
 	@Override
-	public List<CartVO> selectCart(int c_no) {
-		return sqlSession.selectList(NAMESPACE+".cart-select-by-c_no", c_no);
+	public CartVO selectCart(int c_no) {
+		return sqlSession.selectOne(NAMESPACE+".cart-select-by-c_no", c_no);
+	}
+	/* ----------------------------------------------------------------------------------------------------- */
+	@Override
+	public int updateBuyNO(int buy_no, int c_no) {
+		Map<String, Integer> map = new HashMap<>();
+		map.put("buy_no", buy_no);
+		map.put("c_no", c_no);
+		return sqlSession.update(NAMESPACE+".cart-update-buy_no", map);
 	}
 
 }

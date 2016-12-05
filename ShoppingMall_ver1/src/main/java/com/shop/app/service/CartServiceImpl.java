@@ -31,8 +31,16 @@ public class CartServiceImpl implements CartService{
 		return dao.updateCount(c_no, buy_cnt);
 	}
 	@Override
-	public List<CartVO> readCart(int c_no) {
+	public CartVO readCart(int c_no) {
 		return dao.selectCart(c_no);
 	}
+	@Override
+	public int updateBuyNo(int buy_no, int c_no) {
+		return dao.updateBuyNO(buy_no, c_no);
+	}
+	/*@Override
+	public int readC_noFromCartList(String b_id) {
+		return dao.readC_noForDeleteFromCartList(b_id);
+	}*/
 
 }

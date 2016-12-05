@@ -16,5 +16,9 @@ public class OrderServiceImpl implements OrderService{
 	public int insertOrder(OrderVO vo) {
 		return dao.insertOder(vo);
 	}
+	@Override
+	public int getBuyNo(String b_id) {
+		return dao.getBuy_no(b_id);
+	}
 	
 }

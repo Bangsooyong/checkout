@@ -31,6 +31,8 @@
 	</beans:bean>
 	<beans:bean id="AuthInterceptor" class="com.shop.app.interceptor.AuthInterceptor">
 	</beans:bean>
+	<beans:bean id="OrderInterceptor" class="com.shop.app.interceptor.OrderInterceptor">
+	</beans:bean>
 	
 	<!--  인터셉터를 요청(request)에 매핑 -->
 	<interceptors>
@@ -49,6 +51,11 @@
 		<interceptor>
 			<mapping path=""/> <!--/board/register : Auth 인터셉터 -->
 			<beans:ref bean="AuthInterceptor"/>
+		</interceptor>
+		
+		<interceptor>
+			<mapping path="/cart/readyForBill"/>
+			<beans:ref bean="OrderInterceptor"/>
 		</interceptor>
 		
 	</interceptors>
