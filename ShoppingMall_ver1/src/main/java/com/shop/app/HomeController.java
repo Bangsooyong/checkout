@@ -35,7 +35,7 @@ public class HomeController {
 		
 
 		//return "/UI/register";
-		return "sudo_cart2";
+		return "template_form";
 		//return "/UI/index";
 	}
 	

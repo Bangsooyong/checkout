@@ -89,6 +89,7 @@ public class CartController {
 	@RequestMapping(value="updateCartBuyCnt", method=RequestMethod.GET)
 	public void updateCart(int c_no, int buy_cnt, HttpServletResponse response) throws IOException{
 		cartService.updateBuyCnt(c_no, buy_cnt);
+
 		logger.info("수량 업데이트 성공");
 		CartVO vo = cartService.readCart(c_no);
 		int count = vo.getBuy_cnt(); 
