@@ -166,7 +166,7 @@ tr td {
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
 	$('#submitBuy').click(function() {
-		window.open("../cart/test_bill", 'window', 'width=500, height=500, resizable=no');
+		window.open("../order/test_bill", 'window', 'width=500, height=500, resizable=no');
 
 
 	});

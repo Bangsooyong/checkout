@@ -54,7 +54,7 @@
 		</interceptor>
 		
 		<interceptor>
-			<mapping path="/cart/readyForBill"/>
+			<mapping path="/order/readyForBill"/>
 			<beans:ref bean="OrderInterceptor"/>
 		</interceptor>
 		
