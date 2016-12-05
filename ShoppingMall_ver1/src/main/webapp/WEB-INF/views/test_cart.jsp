@@ -36,6 +36,7 @@ tr td {
          <th>상품가격</th>
          <th>구매수량</th>
          <th>총주문금액</th>
+         <th>주문하기</th>
       </tr>
       
       <c:forEach var="vo" items="${cartList}">
@@ -58,6 +59,12 @@ tr td {
                   <input type="button" value="수정" class="changeCnt"><!-- </span> -->
             <!-- 아이템당 가격 -->
             <td class="pricePerCount">${vo.p_price * vo.buy_cnt }</td>
+         	<td>
+         	<form action="/shop01/order/OneCartTossOrder" method="post">
+         	<input type="hidden" name="c_no" value="${vo.c_no}">
+         	<input type="submit" value="주문하기">
+         	</form>
+         	</td>
          </tr>
          <!--http://idevsigner.tistory.com/6  -->
       </c:forEach>
@@ -73,7 +80,7 @@ tr td {
 <form action="/shop01/order/cartTossOrder" method="post" id="toOrder">	
 	<!-- 주문하기  -->
 	<input type="hidden" value="" id="hiddenCartNums" name="c_no">
-	<input type="button" value="주문하기" id="CartToController" />
+	<input type="button" value="전체 주문하기" id="CartToController" />
 
 </form>
 
@@ -111,7 +118,6 @@ tr td {
          }
          $("#price").val(finalCartPrice);
       }
-      /* var inputs = $('input[type="checkbox"]') */
       
       var inputs = $('input[type="checkbox"]')
       inputs.change(function(){
