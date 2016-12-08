@@ -63,7 +63,7 @@ public class BuyerController {
 		String b_id = userid.substring(0, userid.length()-1);
 		logger.info("b_id : " + b_id);
 		
-		// DB에서 입력한 문자열 검색
+		// DB에서 입력한 문자열 검색c
 		BuyerVO vo = buyerService.read(b_id);
 		
 		// DB에 있다면 중복...

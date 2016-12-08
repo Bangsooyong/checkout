@@ -632,14 +632,17 @@ input.radio {
 											 	<!-- <small id="b_duplicationCheckResult2">
 											 	 	유효한 이메일임을 확인하기 위해서 확인메일을 보냅니다.</small> -->
 												</label>
+												
 												<div class="controls" id="b_email">
+												<div class="form-inline">	<!-- ***** TODO ******  -->
 													<input type="email" id='b_email2' name="b_email" class="input-xlarge"
 														placeholder="이메일주소 입력 ">
 														
 												    <span class="input-group-btn" id="b_check">
 														<!-- <button type="button" name="btn_for_check" id="showConfirmForm">승인번호 얻기</button> -->
-														<button type="button" id="b_showConfirmForm">승인번호 얻기</button>
+														<button class="btn" type="button" id="b_showConfirmForm">승인번호 얻기</button>
 													</span> 
+												</div>
 												</div>
 											 </div>
 											 
@@ -669,11 +672,13 @@ input.radio {
 														<!-- <small id="check_code">hide</small>  --><!-- ### TEST ### 빠른 인증번호 확인을 위한 코드 -->
 												</label>
 												<div class="controls" id="b_email_input-group">
+												<div class="form-inline">	<!-- ***** TODO ******  -->
 													<input required type="text" name="b_email_input" id = "b_email_input"class="input-xlarge"
 														placeholder="승인번호 ex)1234 "> <span
 														class="input-group-btn" id="b_email_span">
-														<button type="button" name="b_email_btn" id="b_email_confirm_btn">확인</button>
+														<button class="btn" type="button" name="b_email_btn" id="b_email_confirm_btn">확인</button>
 													</span>
+													</div>
 												</div>
 											</div>
 
