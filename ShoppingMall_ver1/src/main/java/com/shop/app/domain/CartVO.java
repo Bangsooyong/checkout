@@ -9,6 +9,7 @@ public class CartVO {
 	String b_id; // 구매자 아이디
 	String p_name; // 상품이름
 	String o_cont; // 옵션 콘텐츠
+/*	String s_id;*/
 	
 	public CartVO(){}
 	
@@ -21,6 +22,7 @@ public class CartVO {
 		this.b_id = b_id;
 		this.p_name = p_name;
 		this.o_cont = o_cont;
+/*		this.s_id = s_id;*/
 	}
 
 	public int getC_no() {
@@ -86,6 +88,15 @@ public class CartVO {
 	public void setO_cont(String o_cont) {
 		this.o_cont = o_cont;
 	}
+
+/*	public String getS_id() {
+		return s_id;
+	}
+
+	public void setS_id(String s_id) {
+		this.s_id = s_id;
+	}*/
+	
 	
 	
 	

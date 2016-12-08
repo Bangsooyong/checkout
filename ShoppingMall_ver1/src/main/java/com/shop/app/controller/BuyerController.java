@@ -194,16 +194,5 @@ public class BuyerController {
 	}
 	
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-	
-	
-/*	// ### TEST
-	@RequestMapping(value="/base", method=RequestMethod.GET)
-	public String baseCheckout(Model model){
-		
-	logger.info("checkout 실행");
 
-	return "/UI/checkout";
-	}*/
-
-	
 } // end class

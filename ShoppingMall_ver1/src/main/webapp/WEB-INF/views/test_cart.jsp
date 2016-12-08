@@ -35,7 +35,8 @@ tr td {
          <th>옵션</th>
          <th>상품가격</th>
          <th>구매수량</th>
-         <th>총주문금액</th>
+         <th>주문금액</th>
+         <th>주문하기</th>
       </tr>
       
       <c:forEach var="vo" items="${cartList}">
@@ -53,27 +54,34 @@ tr td {
             <!--  가격 -->
             <td>
                   <!-- 수량 -->
-                  <input style="width: 20px;" value="${vo.buy_cnt }"  class="buy_cnt">
+                  <input style="width: 20px;" value="${vo.buy_cnt }"  class="buy_cnt" type="number">
                   <%-- <input type="hidden" value="${vo.c_no}" name="c_no"> <span> --%>
                   <input type="button" value="수정" class="changeCnt"><!-- </span> -->
             <!-- 아이템당 가격 -->
             <td class="pricePerCount">${vo.p_price * vo.buy_cnt }</td>
+         	<td>
+         	<form action="/shop01/order/OneCartTossOrder" method="post">
+         	<input type="hidden" name="c_no" value="${vo.c_no}">
+         	<input type="submit" value="주문하기">
+         	</form>
+         	</td>
          </tr>
          <!--http://idevsigner.tistory.com/6  -->
       </c:forEach>
       
    </table>
 
-   <div>
-      총 구매 가격 :
-      <!-- 총 가격 -->
-      <input id="price" value="0" readonly="readonly" type="number" step="100" style="width: 269px">
-   </div>
-   <input type="button" value="장바구니에서 삭제" class="deleteall">
-<form action="/shop01/order/cartTossOrder" method="post" id="toOrder">   
-   <!-- 주문하기  -->
-   <input type="hidden" value="" id="hiddenCartNums" name="c_no">
-   <input type="button" value="주문하기" id="CartToController" />
+	<div>
+		총 구매 가격 :
+		<!-- 총 가격 -->
+		<input id="price" value="0" readonly="readonly" type="number" step="100" style="width: 269px">
+	</div>
+	<input type="button" value="장바구니에서 삭제" class="deleteall">
+<form action="/shop01/order/cartTossOrder" method="post" id="toOrder">	
+	<!-- 주문하기  -->
+	<input type="hidden" value="" id="hiddenCartNums" name="c_no">
+	<input type="button" value="전체 주문하기" id="CartToController" />
+
 </form>
 
    <script
@@ -110,7 +118,6 @@ tr td {
          }
          $("#price").val(finalCartPrice);
       }
-      /* var inputs = $('input[type="checkbox"]') */
       
       var inputs = $('input[type="checkbox"]')
       inputs.change(function(){
@@ -243,46 +250,10 @@ tr td {
              });  
       });
       
-      /* $('#checkall').click(function() {
-         if ($(this).is(':checked') == true) {
-            updateTotalPrice();
-         }  else {
-            $('#price').val('0');
-         }
-      }); */
       $('.checkbox').click(function() {
          updateTotalPrice();
       });
       
-      /*  $('#changeCnt').on("click",function() {
-            var chkObj = document.getElementsByName("RowCheck");
-            var rowCnt = chkObj.length;
-            var totalval = 0;
-            var data = [];
-            for (var i = 0; i < rowCnt; i++) {
-               if (chkObj[i].checked == true) {
-                  console.log("체크된 카트 번호 : " + chkObj[i].value);
-                  data[data.length] = chkObj[i].value;
-                  ////////////////// 데이터 보내기 ////////////////////      
-               }   
-            }
-            console.log(data);
-            $.ajax({
-                 type: "get",
-                 url: "updateCartBuyCnt",
-                 headers : {
-                  'Accept' : 'application/json',
-                  'Content-Type' : 'application/json'
-               },
-                 data: data,
-                 success: function(data){
-                     alert(data.Result);
-                 },
-                 dataType: "json",
-                // traditional: true
-             }); 
-      });
-       */
       
 
    </script>
