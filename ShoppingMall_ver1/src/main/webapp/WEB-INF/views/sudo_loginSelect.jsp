@@ -177,11 +177,13 @@
 				
 				
 			<div class="span7">
+
 				<h4 class="title">
 					<span class="text"><strong>Register</strong> Select</span>
 				</h4>
 				<a href=""><img alt="구매자 회원가입" src="http://order.garak24.com/data/skin/default/images/buttons/banner_join_buyer.gif" style="width: 150px"></a>
 				<a href=""><img alt="판매자 회원가입" src="http://order.garak24.com/data/skin/default/images/buttons/banner_join_seller.gif" style="width: 150px"></a>
+
 
 
 			</div>

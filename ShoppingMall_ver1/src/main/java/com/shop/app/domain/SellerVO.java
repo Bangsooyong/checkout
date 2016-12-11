@@ -23,10 +23,8 @@ public class SellerVO {
 	private String s_logo; // 판매자 로고
 	private String s_info; // 판매자 정보
 	
+	public SellerVO(){}
 	
-	
-	public SellerVO() {}
-
 
 	// 생성자 (가입여부), 로고, 정보 제외
 	public SellerVO(String s_id, String s_pw, String s_name, int s_gender, String s_birth, int s_phone,

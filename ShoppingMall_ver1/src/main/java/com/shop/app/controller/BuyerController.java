@@ -63,7 +63,7 @@ public class BuyerController {
 		String b_id = userid.substring(0, userid.length()-1);
 		logger.info("b_id : " + b_id);
 		
-		// DB에서 입력한 문자열 검색
+		// DB에서 입력한 문자열 검색c
 		BuyerVO vo = buyerService.read(b_id);
 		
 		// DB에 있다면 중복...
@@ -82,7 +82,7 @@ public class BuyerController {
 	@RequestMapping(value="/s_checkid", method=RequestMethod.POST)
 	public void s_checkid(@RequestBody String userid, HttpServletResponse response) throws IOException{
 		
-		logger.info("checkid 실행");
+		logger.info("s_checkid 실행");
 		// logger.info("userid : " + userid);
 		
 		// 필요없는 문자열을 제거
@@ -93,7 +93,6 @@ public class BuyerController {
 		// DB에서 입력한 문자열 검색
 		SellerVO vo = sellerService.read(s_id);
 
-		
 		// DB에 있다면 중복...
 		if (vo!=null){
 			String selectedID = vo.getS_id();
@@ -158,6 +157,7 @@ public class BuyerController {
 	// 판매자 가입완료 버튼 클릭
 	@RequestMapping(value="/s_register_result", method=RequestMethod.POST)
 	public String s_register_result(SellerVO vo){
+		logger.info("s_register_result 실행");
 		// login1 폼에서 입력받은 값을 vo 에 넣어서 insert합니다.
 		// 아이디가 PK라서 같은 아이디 두번넣으면 에러남.
 		logger.info("판매자 회원가입 버튼 호출 ");
@@ -184,7 +184,6 @@ public class BuyerController {
 			return "redirect:/register";
 		}
 	}
-	
 	@RequestMapping(value="logout", method=RequestMethod.GET)
 	public String logout(HttpServletRequest request){
 		HttpSession session = request.getSession();
@@ -196,16 +195,4 @@ public class BuyerController {
 	
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-	
-/*	// ### TEST
-	@RequestMapping(value="/base", method=RequestMethod.GET)
-	public String baseCheckout(Model model){
-		
-		logger.info("checkout 실행");
-
-	
-	return "/UI/checkout";
-	}*/
-
-	
 } // end class

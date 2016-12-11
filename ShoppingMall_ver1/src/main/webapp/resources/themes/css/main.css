@@ -21,10 +21,10 @@ ul li a,a{
     transition: all 0.2s linear;
 }
 a{
-	color:#eb4800;
+	color:#EA9999;
 }
 a:hover{
-	color:#fd4004;
+	color:#E06666;/* 조금 진한 */
 	text-decoration:none;
 }
 .img-al{
@@ -93,7 +93,7 @@ section.header_text{
 	border-bottom:1px solid #fff;
 }
 section.homepage-slider{
-	border-bottom:1px dotted #eb4800;
+	border-bottom:1px dotted #EA9999;
 	padding-bottom:1px;
 	position: relative;
 	top:0;
@@ -109,7 +109,7 @@ section.homepage-slider div.intro{
 	opacity:.7;
 }
 section.homepage-slider h1{
-	background-color:#eb4800;
+	background-color:#EA9999;
 	color:#fff;
 	padding:2px 7px;
 	font-size:30px;
@@ -270,13 +270,13 @@ section.navbar{
 	margin-bottom:0;
 }
 .navbar-inner.main-menu {	
-	height: 40px;
+	height: 55px;/* 수정 : 로고들어가는 위치 */
 	padding-left:10px;	
 	padding-right:0;	
 	border-right: 0;
 	border-left: 0;
 	border-top: 0;
-	border-bottom:5px solid #eb4800;
+	border-bottom:5px solid #EA9999;/* 수정 */
 	-webkit-border-radius: 0;
 	-moz-border-radius: 0;	
 	border-radius: 0;
@@ -311,16 +311,16 @@ section.navbar{
 	padding: 10px 14px;
 	}
 #menu > ul > li.active{
-	background-color:#eb4800;
+	background-color:#EA9999;
 }
 #menu > ul > li.active > a{
 	color:#fff;
 }
 #menu > ul a:hover{
-	color: #eb4800; 
+	color: #EA9999; 
 	text-decoration:none;
 }
-#menu .current{color: #eb4800 !important;}
+#menu .current{color: #EA9999 !important;}
 
 #menu ul ul {
     background: none repeat scroll 0 0 #eee;
@@ -352,8 +352,8 @@ section.navbar{
     color: #333;
     font-size: 12px;
 }
-#menu ul ul a:hover,#menu > ul > li:hover > a{color: #fff;background-color:#eb4800}
-#menu ul ul a:hover{background-color:#eb4800;}
+#menu ul ul a:hover,#menu > ul > li:hover > a{color: #fff;background-color:#EA9999}
+#menu ul ul a:hover{background-color:#EA9999;}
 #menu > ul > li:hover {visibility: inherit;}
 #menu li:hover {visibility: inherit;}
 #menu li:hover ul,
@@ -368,7 +368,7 @@ section.navbar{
     top: 0px;
 }
 #menu li.sfHover > a{
-	color:#eb4800;
+	color:#EA9999;
 }
 #menu .sf-sub-indicator{
 	display:none;
@@ -384,7 +384,7 @@ section.navbar{
 }
 .feature_box img{	
 	margin-bottom:10px;
-	background-color:#eb4800;
+	background-color:#EA9999;
 	padding:25px;
 	-webkit-border-radius: 50%;
 	-moz-border-radius: 50%;	
@@ -431,7 +431,8 @@ section.navbar{
 	left:0;
 }
 .product-box:hover{
-	background-color:#eb4800;
+	/* background-color:#eb4800;  */
+	background-color:#EA9999; /* -- 수정 -- */
 	-webkit-transition: all 0.2s linear;
     -moz-transition: all 0.2s linear;
     -o-transition: all 0.2s linear;
@@ -454,7 +455,7 @@ section.navbar{
 	margin:15px 0 0px 0;
 }
 .product-box a.category{
-	color:#eb4800;
+	color:#EA9999;
 }
 .product-box p.price{
 	font-size:20px;
@@ -481,7 +482,7 @@ h4.title.m{
 	width:100%;
 }
 h4.title strong{
-	color:#eb4800;
+	color:#EA9999;/* 수정 */
 }
 h4.title span.text{
 	background-color:#fff;
@@ -505,7 +506,7 @@ h4.title .left,h4.title .right{
 	cursor: pointer;
 }
 h4.title .left:hover,h4.title .right:hover{
-	background-color:#eb4800;
+	background-color:#EA9999;
 }
 h4.title .button:hover{
 	text-decoration: none;
@@ -629,7 +630,7 @@ section.our_client .row{
 	text-align: center;
 	padding: 7px;
 	border: 1px solid #ddd;
-	border-top: 3px solid #eb4800;
+	border-top: 3px solid #EA9999;
 	-moz-box-shadow: 0 0 3px 0 #ccc;
 	-webkit-box-shadow: 0 0 3px 0 #ccc;
 	box-shadow: 0 0 3px 0 #ccc;
@@ -673,7 +674,7 @@ section.our_client .row{
 }
 .nav-list > .active > a, .nav-list > .active > a:hover{
 	background-color: transparent;
-	color:#eb4800;
+	color:#EA9999;
 	text-shadow: none;	
 	font-weight: bold;
 }
@@ -683,7 +684,7 @@ section.our_client .row{
 ._toggleMenu{
 	margin:0 -10px;
 	display:none;
-	background:#eb4800;	
+	background:#EA9999;	
 }
 ._toggleMenu a{
 	color:#fff;
@@ -770,7 +771,7 @@ section.our_client .row{
 	#footer-bar .nav li{float:left;}
 	#footer-bar  .nav a:hover{
 		background-color:transparent;
-		color:#eb4800;
+		color:#EA9999;
 	}
 	.feature_box .service{	
 		border-bottom:1px solid #eee;

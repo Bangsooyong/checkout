@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- SQL 문장들을 작성하는 XML 파일 -->
+<mapper namespace="com.shop.app.ProductMapper">	
+<!-- 상품리스트 뿌리기 -->
+	<select id="selectAll-product" resultType="com.shop.app.domain.ProductVO">
+		select * from s_tbl_product order by p_reg
+	</select>
+
+<!-- 상품리스트에서 클릭하면 그것만 나오기-->	
+	<select id="select-by-p_no" resultType="com.shop.app.domain.ProductVO">
+		select * from s_tbl_product where p_no = #{p_no}
+	</select>	
+</mapper>
